@@ -1,0 +1,11 @@
+mlp_pipeline/.mplconfig/
+.DS_Store
+.claude/
+README.zip
+power_tx_data/
+*.pt
+mlp_pipeline/ckpts/
+mlp_pipeline/logs/
+mlp_pipeline/__pycache__/
+mlp_pipeline/**/__pycache__/
+*.pyc
