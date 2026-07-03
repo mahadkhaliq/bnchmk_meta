@@ -1,0 +1,48 @@
+================ SILU+BETA2 NEIGH INTEGRATED RUN START Mon Jun 29 22:55:55 CDT 2026 ================
+SiLU/Sigmoid + beta2 neighbourhood on power-tx 2x2 | device cpu | grid 2x2 K=3 ch=4 per-cell d_in=36 d_out=2001 512x4
+Trainable parameters: 1,833,425
+Epoch   0 | train(beta2) 0.088376 | val(MSE) 0.048329 | lr 1.00e-03
+Epoch  10 | train(beta2) 0.020324 | val(MSE) 0.013303 | lr 9.97e-04
+Epoch  20 | train(beta2) 0.014874 | val(MSE) 0.010127 | lr 9.88e-04
+Epoch  30 | train(beta2) 0.013351 | val(MSE) 0.009060 | lr 9.74e-04
+Epoch  40 | train(beta2) 0.012678 | val(MSE) 0.008381 | lr 9.55e-04
+Epoch  50 | train(beta2) 0.012121 | val(MSE) 0.008241 | lr 9.30e-04
+Epoch  60 | train(beta2) 0.011809 | val(MSE) 0.007978 | lr 9.01e-04
+Epoch  70 | train(beta2) 0.011659 | val(MSE) 0.007784 | lr 8.68e-04
+Epoch  80 | train(beta2) 0.011316 | val(MSE) 0.007679 | lr 8.31e-04
+Epoch  90 | train(beta2) 0.011163 | val(MSE) 0.007595 | lr 7.90e-04
+Epoch 100 | train(beta2) 0.010991 | val(MSE) 0.007293 | lr 7.45e-04
+Epoch 110 | train(beta2) 0.010796 | val(MSE) 0.007119 | lr 6.99e-04
+Epoch 120 | train(beta2) 0.010671 | val(MSE) 0.007292 | lr 6.50e-04
+Epoch 130 | train(beta2) 0.010471 | val(MSE) 0.006995 | lr 5.99e-04
+Epoch 140 | train(beta2) 0.010323 | val(MSE) 0.007147 | lr 5.47e-04
+Epoch 150 | train(beta2) 0.010212 | val(MSE) 0.007069 | lr 4.95e-04
+Epoch 160 | train(beta2) 0.010078 | val(MSE) 0.006777 | lr 4.43e-04
+Epoch 170 | train(beta2) 0.009974 | val(MSE) 0.006855 | lr 3.91e-04
+Epoch 180 | train(beta2) 0.009865 | val(MSE) 0.006719 | lr 3.41e-04
+Epoch 190 | train(beta2) 0.009758 | val(MSE) 0.006588 | lr 2.92e-04
+Epoch 200 | train(beta2) 0.009681 | val(MSE) 0.006546 | lr 2.45e-04
+Epoch 210 | train(beta2) 0.009567 | val(MSE) 0.006477 | lr 2.02e-04
+Epoch 220 | train(beta2) 0.009461 | val(MSE) 0.006424 | lr 1.62e-04
+Epoch 230 | train(beta2) 0.009387 | val(MSE) 0.006466 | lr 1.25e-04
+Epoch 240 | train(beta2) 0.009313 | val(MSE) 0.006408 | lr 9.24e-05
+Epoch 250 | train(beta2) 0.009242 | val(MSE) 0.006406 | lr 6.44e-05
+Epoch 260 | train(beta2) 0.009195 | val(MSE) 0.006383 | lr 4.11e-05
+Epoch 270 | train(beta2) 0.009146 | val(MSE) 0.006299 | lr 2.29e-05
+Epoch 280 | train(beta2) 0.009114 | val(MSE) 0.006260 | lr 9.86e-06
+Epoch 290 | train(beta2) 0.009093 | val(MSE) 0.006256 | lr 2.22e-06
+Epoch 299 | train(beta2) 0.009084 | val(MSE) 0.006262 | lr 0.00e+00
+
+Best plain val MSE: 0.006256 @ epoch 290 | test MSE: 0.006344
+  run           : 2026-06-29T23:34:44
+  variant       : neighbourhood_SiLU_512x4_sigmoid  (+ K=3 neighbours + beta2 loss)
+  dataset       : power-transmission 2x2  (/Users/mkfqm/malof_lab/power_tx_data/version_2/dataset_2x2_integrated.npz)
+  grid_n=2  channels=4  kernel K=3  per-cell d_in=36  d_out=2001
+  hidden=512  n_layers=4  act=silu  out_act=sigmoid  loss=beta2
+  optim         : Adam lr=0.001 weight_decay=1e-05 sched=CosineAnnealingLR(T_max=300)
+  batch=128  epochs=300  patience=25  select='best plain val MSE'
+  samples       : train=14704  val=3677  test=3244  (test_split=0.15)
+  device        : cpu
+  RESULT        : best plain val MSE=0.006256 @epoch 290 (stopped @ 299) | test MSE=0.006344
+  checkpoint    : ckpts/silu_neigh_2x2_integrated_K3_512x4.pt
+================ RUN DONE Mon Jun 29 23:34:47 CDT 2026 status=0 ================

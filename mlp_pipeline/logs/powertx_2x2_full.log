@@ -1,0 +1,121 @@
+================ RUN START Thu Jun 25 03:42:09 CDT 2026 ================
+Dataset: power-transmission 2x2 | device check below
+
+################ MODEL 1: BASELINE (no neighbouring) ################
+Dataset: power-transmission 2x2  |  input 16 -> output 2001
+Trainable parameters: 40,100,003
+Epoch   0 | train 0.486976 | val 0.484433 | lr 1.0e-04
+Epoch  10 | train 0.045020 | val 0.056989 | lr 1.0e-04
+Epoch  20 | train 0.026957 | val 0.052876 | lr 1.0e-04
+Epoch  30 | train 0.020136 | val 0.049802 | lr 1.0e-04
+Epoch  40 | train 0.014514 | val 0.048664 | lr 1.0e-04
+Epoch  50 | train 0.014263 | val 0.048090 | lr 1.0e-04
+Epoch  60 | train 0.010527 | val 0.048499 | lr 1.0e-04
+Epoch  70 | train 0.009420 | val 0.048941 | lr 1.0e-04
+Epoch  80 | train 0.007765 | val 0.049229 | lr 1.0e-04
+Epoch  90 | train 0.007726 | val 0.048728 | lr 1.0e-04
+Epoch 100 | train 0.005547 | val 0.047743 | lr 2.0e-05
+Epoch 110 | train 0.004917 | val 0.048260 | lr 2.0e-05
+Epoch 120 | train 0.004802 | val 0.048179 | lr 2.0e-05
+Epoch 130 | train 0.004728 | val 0.048598 | lr 2.0e-05
+Epoch 140 | train 0.004822 | val 0.048228 | lr 2.0e-05
+Epoch 150 | train 0.004277 | val 0.048389 | lr 2.0e-05
+Epoch 160 | train 0.004886 | val 0.048572 | lr 2.0e-05
+Epoch 170 | train 0.004222 | val 0.048386 | lr 2.0e-05
+Epoch 180 | train 0.004244 | val 0.048870 | lr 2.0e-05
+Epoch 190 | train 0.003839 | val 0.048599 | lr 2.0e-05
+Epoch 200 | train 0.004381 | val 0.049186 | lr 2.0e-05
+Epoch 210 | train 0.003805 | val 0.048485 | lr 2.0e-05
+Epoch 220 | train 0.003347 | val 0.048416 | lr 4.0e-06
+Epoch 230 | train 0.003526 | val 0.048817 | lr 4.0e-06
+Epoch 240 | train 0.003252 | val 0.048405 | lr 8.0e-07
+Epoch 250 | train 0.003554 | val 0.049171 | lr 1.6e-07
+Epoch 260 | train 0.003255 | val 0.048582 | lr 1.6e-07
+Epoch 270 | train 0.003423 | val 0.048456 | lr 3.2e-08
+Epoch 280 | train 0.003467 | val 0.048663 | lr 6.4e-09
+Epoch 290 | train 0.003484 | val 0.048489 | lr 6.4e-09
+Epoch 300 | train 0.003393 | val 0.048391 | lr 6.4e-09
+Epoch 310 | train 0.003226 | val 0.048755 | lr 6.4e-09
+Epoch 320 | train 0.003134 | val 0.049021 | lr 6.4e-09
+Epoch 330 | train 0.003287 | val 0.048687 | lr 6.4e-09
+Epoch 340 | train 0.003282 | val 0.048495 | lr 6.4e-09
+Epoch 350 | train 0.003406 | val 0.048866 | lr 6.4e-09
+Epoch 360 | train 0.003247 | val 0.048571 | lr 6.4e-09
+Epoch 370 | train 0.003266 | val 0.048817 | lr 6.4e-09
+Epoch 380 | train 0.003605 | val 0.048755 | lr 6.4e-09
+Epoch 390 | train 0.003564 | val 0.049095 | lr 6.4e-09
+Epoch 400 | train 0.003340 | val 0.048634 | lr 6.4e-09
+Epoch 410 | train 0.003405 | val 0.048815 | lr 6.4e-09
+Epoch 420 | train 0.003287 | val 0.048342 | lr 6.4e-09
+Epoch 430 | train 0.003423 | val 0.048538 | lr 6.4e-09
+Epoch 440 | train 0.003517 | val 0.048830 | lr 6.4e-09
+Epoch 450 | train 0.003267 | val 0.049123 | lr 6.4e-09
+Epoch 460 | train 0.003320 | val 0.048670 | lr 6.4e-09
+Epoch 470 | train 0.003830 | val 0.048879 | lr 6.4e-09
+Epoch 480 | train 0.003276 | val 0.048639 | lr 6.4e-09
+Epoch 490 | train 0.003671 | val 0.048793 | lr 6.4e-09
+
+Done in 4.2 min. Best val loss: 0.047743
+Saved best checkpoint to: best_powertx_baseline_2x2.pt
+
+################ MODEL 2: NEIGHBOURHOOD (with neighbouring) ################
+Dataset: power-transmission 2x2  |  grid 2x2, 4 ch, K=3 -> output 2001
+Trainable parameters: 40,140,003
+Epoch   0 | train 0.398933 | val 0.480040 | lr 1.0e-04
+Epoch  10 | train 0.018612 | val 0.048649 | lr 1.0e-04
+Epoch  20 | train 0.009204 | val 0.045409 | lr 1.0e-04
+Epoch  30 | train 0.006387 | val 0.044554 | lr 1.0e-04
+Epoch  40 | train 0.004976 | val 0.043614 | lr 1.0e-04
+Epoch  50 | train 0.004242 | val 0.043050 | lr 1.0e-04
+Epoch  60 | train 0.004939 | val 0.043152 | lr 1.0e-04
+Epoch  70 | train 0.002303 | val 0.041989 | lr 2.0e-05
+Epoch  80 | train 0.002194 | val 0.042118 | lr 2.0e-05
+Epoch  90 | train 0.001978 | val 0.042182 | lr 2.0e-05
+Epoch 100 | train 0.002159 | val 0.042123 | lr 2.0e-05
+Epoch 110 | train 0.001835 | val 0.042117 | lr 2.0e-05
+Epoch 120 | train 0.001801 | val 0.042218 | lr 2.0e-05
+Epoch 130 | train 0.001872 | val 0.042235 | lr 4.0e-06
+Epoch 140 | train 0.001593 | val 0.042320 | lr 4.0e-06
+Epoch 150 | train 0.001542 | val 0.042255 | lr 8.0e-07
+Epoch 160 | train 0.001702 | val 0.042254 | lr 8.0e-07
+Epoch 170 | train 0.001582 | val 0.042229 | lr 1.6e-07
+Epoch 180 | train 0.001926 | val 0.042257 | lr 1.6e-07
+Epoch 190 | train 0.001463 | val 0.042286 | lr 3.2e-08
+Epoch 200 | train 0.001499 | val 0.042315 | lr 6.4e-09
+Epoch 210 | train 0.001861 | val 0.042344 | lr 6.4e-09
+Epoch 220 | train 0.001663 | val 0.042247 | lr 6.4e-09
+Epoch 230 | train 0.001818 | val 0.042335 | lr 6.4e-09
+Epoch 240 | train 0.001537 | val 0.042253 | lr 6.4e-09
+Epoch 250 | train 0.001714 | val 0.042274 | lr 6.4e-09
+Epoch 260 | train 0.001518 | val 0.042215 | lr 6.4e-09
+Epoch 270 | train 0.001492 | val 0.042334 | lr 6.4e-09
+Epoch 280 | train 0.001734 | val 0.042266 | lr 6.4e-09
+Epoch 290 | train 0.001632 | val 0.042276 | lr 6.4e-09
+Epoch 300 | train 0.001564 | val 0.042258 | lr 6.4e-09
+Epoch 310 | train 0.001662 | val 0.042343 | lr 6.4e-09
+Epoch 320 | train 0.001673 | val 0.042159 | lr 6.4e-09
+Epoch 330 | train 0.001548 | val 0.042228 | lr 6.4e-09
+Epoch 340 | train 0.001649 | val 0.042262 | lr 6.4e-09
+Epoch 350 | train 0.001524 | val 0.042269 | lr 6.4e-09
+Epoch 360 | train 0.001422 | val 0.042263 | lr 6.4e-09
+Epoch 370 | train 0.001549 | val 0.042281 | lr 6.4e-09
+Epoch 380 | train 0.001526 | val 0.042145 | lr 6.4e-09
+Epoch 390 | train 0.001579 | val 0.042290 | lr 6.4e-09
+Epoch 400 | train 0.001533 | val 0.042288 | lr 6.4e-09
+Epoch 410 | train 0.001599 | val 0.042241 | lr 6.4e-09
+Epoch 420 | train 0.001788 | val 0.042248 | lr 6.4e-09
+Epoch 430 | train 0.001820 | val 0.042267 | lr 6.4e-09
+Epoch 440 | train 0.001673 | val 0.042286 | lr 6.4e-09
+Epoch 450 | train 0.001748 | val 0.042263 | lr 6.4e-09
+Epoch 460 | train 0.001772 | val 0.042252 | lr 6.4e-09
+Epoch 470 | train 0.001658 | val 0.042352 | lr 6.4e-09
+Epoch 480 | train 0.001568 | val 0.042278 | lr 6.4e-09
+Epoch 490 | train 0.001638 | val 0.042282 | lr 6.4e-09
+
+Done in 6.8 min. Best val loss: 0.041989
+Saved best checkpoint to: best_powertx_neighborhood_2x2.pt
+
+################ EVALUATE BOTH ON TEST SET ################
+[2x2] Baseline MLP        test MSE: 0.044661  (4.466e-02)
+[2x2] Neighbourhood MLP   test MSE: 0.038193  (3.819e-02)
+================ RUN DONE Thu Jun 25 03:53:36 CDT 2026 ================

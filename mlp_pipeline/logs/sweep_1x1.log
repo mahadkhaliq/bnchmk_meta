@@ -1,0 +1,589 @@
+================ FULL SWEEP START Thu Jun 25 05:10:38 CDT 2026 ================
+Sweep on power-transmission 1x1 | device mps | configs [(128, 3), (256, 4), (512, 4), (1024, 6), (2000, 10)]
+saved logs/sweep_1x1_meta.txt
+  sweep run     : 2026-06-25T05:10:44
+  dataset       : power-transmission 1x1  (/Users/mkfqm/malof_lab/power_tx_data/dataset_1x1.npz)
+  grid_n=1  channels=4  kernel K=3
+  input_dim=4  output_dim=2001
+  samples       : train=2044  val=511  test=451  (test_split=0.15)
+  optim         : epochs=500 lr=0.0001 weight_decay=0.0001 batch=128 lr_decay=0.2 lr_patience=10
+  device        : mps
+  CONFIGS       : [(128, 3), (256, 4), (512, 4), (1024, 6), (2000, 10)]   (HIDDEN x N_HIDDEN)
+  variants      : baseline (flat MLP) + neighbourhood (ScaleInvariantMetasurface)
+
+========== config 128x3 ==========
+---- baseline 128x3 ----
+Trainable parameters: 296,563
+Epoch   0 | train 0.732784 | val 0.597416 | lr 1.0e-04
+Epoch  10 | train 0.135520 | val 0.126972 | lr 1.0e-04
+Epoch  20 | train 0.049618 | val 0.046925 | lr 1.0e-04
+Epoch  30 | train 0.027538 | val 0.025537 | lr 1.0e-04
+Epoch  40 | train 0.018873 | val 0.017152 | lr 1.0e-04
+Epoch  50 | train 0.014549 | val 0.012873 | lr 1.0e-04
+Epoch  60 | train 0.012530 | val 0.010353 | lr 1.0e-04
+Epoch  70 | train 0.010535 | val 0.008777 | lr 1.0e-04
+Epoch  80 | train 0.008907 | val 0.007530 | lr 1.0e-04
+Epoch  90 | train 0.008296 | val 0.006608 | lr 1.0e-04
+Epoch 100 | train 0.007264 | val 0.005804 | lr 1.0e-04
+Epoch 110 | train 0.007584 | val 0.005179 | lr 1.0e-04
+Epoch 120 | train 0.006522 | val 0.004667 | lr 1.0e-04
+Epoch 130 | train 0.005974 | val 0.004258 | lr 1.0e-04
+Epoch 140 | train 0.005061 | val 0.003808 | lr 1.0e-04
+Epoch 150 | train 0.005286 | val 0.003550 | lr 1.0e-04
+Epoch 160 | train 0.004641 | val 0.003251 | lr 1.0e-04
+Epoch 170 | train 0.004279 | val 0.003149 | lr 1.0e-04
+Epoch 180 | train 0.004089 | val 0.002798 | lr 1.0e-04
+Epoch 190 | train 0.004527 | val 0.002620 | lr 1.0e-04
+Epoch 200 | train 0.003718 | val 0.002475 | lr 2.0e-05
+Epoch 210 | train 0.003443 | val 0.002434 | lr 4.0e-06
+Epoch 220 | train 0.003909 | val 0.002433 | lr 4.0e-06
+Epoch 230 | train 0.003746 | val 0.002420 | lr 8.0e-07
+Epoch 240 | train 0.003844 | val 0.002430 | lr 1.6e-07
+Epoch 250 | train 0.004020 | val 0.002427 | lr 3.2e-08
+Epoch 260 | train 0.003803 | val 0.002415 | lr 6.4e-09
+Epoch 270 | train 0.003530 | val 0.002413 | lr 6.4e-09
+Epoch 280 | train 0.003988 | val 0.002424 | lr 6.4e-09
+Epoch 290 | train 0.003531 | val 0.002422 | lr 6.4e-09
+Epoch 300 | train 0.004818 | val 0.002434 | lr 6.4e-09
+Epoch 310 | train 0.003946 | val 0.002469 | lr 6.4e-09
+Epoch 320 | train 0.003993 | val 0.002417 | lr 6.4e-09
+Epoch 330 | train 0.003239 | val 0.002411 | lr 6.4e-09
+Epoch 340 | train 0.004280 | val 0.002418 | lr 6.4e-09
+Epoch 350 | train 0.003842 | val 0.002417 | lr 6.4e-09
+Epoch 360 | train 0.003919 | val 0.002414 | lr 6.4e-09
+Epoch 370 | train 0.004187 | val 0.002417 | lr 6.4e-09
+Epoch 380 | train 0.003870 | val 0.002424 | lr 6.4e-09
+Epoch 390 | train 0.003435 | val 0.002424 | lr 6.4e-09
+Epoch 400 | train 0.003695 | val 0.002448 | lr 6.4e-09
+Epoch 410 | train 0.003866 | val 0.002447 | lr 6.4e-09
+Epoch 420 | train 0.004623 | val 0.002417 | lr 6.4e-09
+Epoch 430 | train 0.003646 | val 0.002446 | lr 6.4e-09
+Epoch 440 | train 0.004296 | val 0.002398 | lr 6.4e-09
+Epoch 450 | train 0.003776 | val 0.002402 | lr 6.4e-09
+Epoch 460 | train 0.004150 | val 0.002464 | lr 6.4e-09
+Epoch 470 | train 0.003919 | val 0.002404 | lr 6.4e-09
+Epoch 480 | train 0.004132 | val 0.002424 | lr 6.4e-09
+Epoch 490 | train 0.003077 | val 0.002424 | lr 6.4e-09
+
+Done in 0.5 min. Best val loss: 0.002398
+Saved best checkpoint to: ckpts/sweep_1x1_baseline_128x3.pt
+---- neighbourhood 128x3 ----
+Trainable parameters: 300,659
+Epoch   0 | train 0.728673 | val 0.592867 | lr 1.0e-04
+Epoch  10 | train 0.127548 | val 0.118404 | lr 1.0e-04
+Epoch  20 | train 0.041148 | val 0.038469 | lr 1.0e-04
+Epoch  30 | train 0.022662 | val 0.020922 | lr 1.0e-04
+Epoch  40 | train 0.016616 | val 0.014374 | lr 1.0e-04
+Epoch  50 | train 0.012310 | val 0.010828 | lr 1.0e-04
+Epoch  60 | train 0.010660 | val 0.008648 | lr 1.0e-04
+Epoch  70 | train 0.009530 | val 0.007162 | lr 1.0e-04
+Epoch  80 | train 0.007629 | val 0.006054 | lr 1.0e-04
+Epoch  90 | train 0.006545 | val 0.005175 | lr 1.0e-04
+Epoch 100 | train 0.006488 | val 0.004692 | lr 1.0e-04
+Epoch 110 | train 0.005671 | val 0.004088 | lr 1.0e-04
+Epoch 120 | train 0.005215 | val 0.003736 | lr 1.0e-04
+Epoch 130 | train 0.005616 | val 0.003284 | lr 1.0e-04
+Epoch 140 | train 0.004900 | val 0.003044 | lr 1.0e-04
+Epoch 150 | train 0.004673 | val 0.002793 | lr 1.0e-04
+Epoch 160 | train 0.004062 | val 0.002614 | lr 2.0e-05
+Epoch 170 | train 0.003939 | val 0.002597 | lr 2.0e-05
+Epoch 180 | train 0.004362 | val 0.002499 | lr 2.0e-05
+Epoch 190 | train 0.003918 | val 0.002477 | lr 2.0e-05
+Epoch 200 | train 0.003862 | val 0.002447 | lr 4.0e-06
+Epoch 210 | train 0.003817 | val 0.002459 | lr 8.0e-07
+Epoch 220 | train 0.004041 | val 0.002445 | lr 1.6e-07
+Epoch 230 | train 0.004027 | val 0.002439 | lr 3.2e-08
+Epoch 240 | train 0.004240 | val 0.002502 | lr 6.4e-09
+Epoch 250 | train 0.003996 | val 0.002483 | lr 6.4e-09
+Epoch 260 | train 0.003521 | val 0.002467 | lr 6.4e-09
+Epoch 270 | train 0.003451 | val 0.002428 | lr 6.4e-09
+Epoch 280 | train 0.003520 | val 0.002460 | lr 6.4e-09
+Epoch 290 | train 0.003820 | val 0.002455 | lr 6.4e-09
+Epoch 300 | train 0.004066 | val 0.002484 | lr 6.4e-09
+Epoch 310 | train 0.004473 | val 0.002452 | lr 6.4e-09
+Epoch 320 | train 0.003738 | val 0.002458 | lr 6.4e-09
+Epoch 330 | train 0.003480 | val 0.002482 | lr 6.4e-09
+Epoch 340 | train 0.003574 | val 0.002436 | lr 6.4e-09
+Epoch 350 | train 0.003955 | val 0.002500 | lr 6.4e-09
+Epoch 360 | train 0.004234 | val 0.002441 | lr 6.4e-09
+Epoch 370 | train 0.003632 | val 0.002477 | lr 6.4e-09
+Epoch 380 | train 0.003803 | val 0.002451 | lr 6.4e-09
+Epoch 390 | train 0.003546 | val 0.002457 | lr 6.4e-09
+Epoch 400 | train 0.003756 | val 0.002442 | lr 6.4e-09
+Epoch 410 | train 0.004045 | val 0.002459 | lr 6.4e-09
+Epoch 420 | train 0.003812 | val 0.002440 | lr 6.4e-09
+Epoch 430 | train 0.003895 | val 0.002463 | lr 6.4e-09
+Epoch 440 | train 0.003960 | val 0.002463 | lr 6.4e-09
+Epoch 450 | train 0.003799 | val 0.002448 | lr 6.4e-09
+Epoch 460 | train 0.004107 | val 0.002475 | lr 6.4e-09
+Epoch 470 | train 0.004013 | val 0.002459 | lr 6.4e-09
+Epoch 480 | train 0.003843 | val 0.002467 | lr 6.4e-09
+Epoch 490 | train 0.003829 | val 0.002450 | lr 6.4e-09
+
+Done in 0.5 min. Best val loss: 0.002428
+Saved best checkpoint to: ckpts/sweep_1x1_neigh_128x3.pt
+[128x3] baseline test 0.00241 (val 0.00240) | neigh test 0.00237 (val 0.00243)
+
+========== config 256x4 ==========
+---- baseline 256x4 ----
+Trainable parameters: 718,963
+Epoch   0 | train 0.653686 | val 0.550889 | lr 1.0e-04
+Epoch  10 | train 0.042357 | val 0.038282 | lr 1.0e-04
+Epoch  20 | train 0.016773 | val 0.014856 | lr 1.0e-04
+Epoch  30 | train 0.011702 | val 0.009625 | lr 1.0e-04
+Epoch  40 | train 0.008971 | val 0.006805 | lr 1.0e-04
+Epoch  50 | train 0.007129 | val 0.005244 | lr 1.0e-04
+Epoch  60 | train 0.005901 | val 0.004232 | lr 1.0e-04
+Epoch  70 | train 0.006049 | val 0.003567 | lr 1.0e-04
+Epoch  80 | train 0.004186 | val 0.003052 | lr 1.0e-04
+Epoch  90 | train 0.004359 | val 0.002847 | lr 1.0e-04
+Epoch 100 | train 0.004724 | val 0.002359 | lr 2.0e-05
+Epoch 110 | train 0.003828 | val 0.002348 | lr 2.0e-05
+Epoch 120 | train 0.003364 | val 0.002243 | lr 4.0e-06
+Epoch 130 | train 0.003947 | val 0.002232 | lr 4.0e-06
+Epoch 140 | train 0.004201 | val 0.002202 | lr 8.0e-07
+Epoch 150 | train 0.003203 | val 0.002207 | lr 8.0e-07
+Epoch 160 | train 0.003686 | val 0.002240 | lr 1.6e-07
+Epoch 170 | train 0.003739 | val 0.002224 | lr 1.6e-07
+Epoch 180 | train 0.003974 | val 0.002201 | lr 3.2e-08
+Epoch 190 | train 0.004094 | val 0.002199 | lr 6.4e-09
+Epoch 200 | train 0.004202 | val 0.002236 | lr 6.4e-09
+Epoch 210 | train 0.003761 | val 0.002220 | lr 6.4e-09
+Epoch 220 | train 0.003501 | val 0.002201 | lr 6.4e-09
+Epoch 230 | train 0.003807 | val 0.002203 | lr 6.4e-09
+Epoch 240 | train 0.003641 | val 0.002230 | lr 6.4e-09
+Epoch 250 | train 0.003773 | val 0.002269 | lr 6.4e-09
+Epoch 260 | train 0.003802 | val 0.002220 | lr 6.4e-09
+Epoch 270 | train 0.003685 | val 0.002204 | lr 6.4e-09
+Epoch 280 | train 0.003778 | val 0.002205 | lr 6.4e-09
+Epoch 290 | train 0.003967 | val 0.002237 | lr 6.4e-09
+Epoch 300 | train 0.003722 | val 0.002216 | lr 6.4e-09
+Epoch 310 | train 0.003490 | val 0.002222 | lr 6.4e-09
+Epoch 320 | train 0.003639 | val 0.002198 | lr 6.4e-09
+Epoch 330 | train 0.003947 | val 0.002230 | lr 6.4e-09
+Epoch 340 | train 0.003636 | val 0.002212 | lr 6.4e-09
+Epoch 350 | train 0.003867 | val 0.002218 | lr 6.4e-09
+Epoch 360 | train 0.003673 | val 0.002200 | lr 6.4e-09
+Epoch 370 | train 0.003670 | val 0.002177 | lr 6.4e-09
+Epoch 380 | train 0.003987 | val 0.002208 | lr 6.4e-09
+Epoch 390 | train 0.003395 | val 0.002195 | lr 6.4e-09
+Epoch 400 | train 0.003910 | val 0.002184 | lr 6.4e-09
+Epoch 410 | train 0.003596 | val 0.002192 | lr 6.4e-09
+Epoch 420 | train 0.004063 | val 0.002170 | lr 6.4e-09
+Epoch 430 | train 0.003592 | val 0.002196 | lr 6.4e-09
+Epoch 440 | train 0.004021 | val 0.002209 | lr 6.4e-09
+Epoch 450 | train 0.003876 | val 0.002242 | lr 6.4e-09
+Epoch 460 | train 0.003380 | val 0.002199 | lr 6.4e-09
+Epoch 470 | train 0.004144 | val 0.002216 | lr 6.4e-09
+Epoch 480 | train 0.003274 | val 0.002209 | lr 6.4e-09
+Epoch 490 | train 0.003489 | val 0.002212 | lr 6.4e-09
+
+Done in 16.7 min. Best val loss: 0.002170
+Saved best checkpoint to: ckpts/sweep_1x1_baseline_256x4.pt
+---- neighbourhood 256x4 ----
+Trainable parameters: 727,155
+Epoch   0 | train 0.658837 | val 0.557411 | lr 1.0e-04
+Epoch  10 | train 0.039623 | val 0.035397 | lr 1.0e-04
+Epoch  20 | train 0.015584 | val 0.013724 | lr 1.0e-04
+Epoch  30 | train 0.009854 | val 0.008255 | lr 1.0e-04
+Epoch  40 | train 0.008030 | val 0.005853 | lr 1.0e-04
+Epoch  50 | train 0.006790 | val 0.004490 | lr 1.0e-04
+Epoch  60 | train 0.004988 | val 0.003581 | lr 1.0e-04
+Epoch  70 | train 0.004987 | val 0.003012 | lr 1.0e-04
+Epoch  80 | train 0.004292 | val 0.002541 | lr 1.0e-04
+Epoch  90 | train 0.005456 | val 0.002307 | lr 1.0e-04
+Epoch 100 | train 0.003631 | val 0.002034 | lr 2.0e-05
+Epoch 110 | train 0.004277 | val 0.001942 | lr 2.0e-05
+Epoch 120 | train 0.003851 | val 0.001919 | lr 2.0e-05
+Epoch 130 | train 0.003508 | val 0.001900 | lr 4.0e-06
+Epoch 140 | train 0.003405 | val 0.001873 | lr 8.0e-07
+Epoch 150 | train 0.003281 | val 0.001844 | lr 1.6e-07
+Epoch 160 | train 0.003394 | val 0.001870 | lr 3.2e-08
+Epoch 170 | train 0.003159 | val 0.001861 | lr 6.4e-09
+Epoch 180 | train 0.002955 | val 0.001853 | lr 6.4e-09
+Epoch 190 | train 0.003817 | val 0.001883 | lr 6.4e-09
+Epoch 200 | train 0.003661 | val 0.001863 | lr 6.4e-09
+Epoch 210 | train 0.003041 | val 0.001859 | lr 6.4e-09
+Epoch 220 | train 0.003501 | val 0.001858 | lr 6.4e-09
+Epoch 230 | train 0.003363 | val 0.001872 | lr 6.4e-09
+Epoch 240 | train 0.003395 | val 0.001878 | lr 6.4e-09
+Epoch 250 | train 0.003547 | val 0.001842 | lr 6.4e-09
+Epoch 260 | train 0.003564 | val 0.001879 | lr 6.4e-09
+Epoch 270 | train 0.003778 | val 0.001864 | lr 6.4e-09
+Epoch 280 | train 0.003431 | val 0.001859 | lr 6.4e-09
+Epoch 290 | train 0.003010 | val 0.001853 | lr 6.4e-09
+Epoch 300 | train 0.003104 | val 0.001835 | lr 6.4e-09
+Epoch 310 | train 0.003610 | val 0.001841 | lr 6.4e-09
+Epoch 320 | train 0.003431 | val 0.001849 | lr 6.4e-09
+Epoch 330 | train 0.002963 | val 0.001852 | lr 6.4e-09
+Epoch 340 | train 0.003757 | val 0.001873 | lr 6.4e-09
+Epoch 350 | train 0.002926 | val 0.001850 | lr 6.4e-09
+Epoch 360 | train 0.003562 | val 0.001873 | lr 6.4e-09
+Epoch 370 | train 0.003583 | val 0.001872 | lr 6.4e-09
+Epoch 380 | train 0.003162 | val 0.001833 | lr 6.4e-09
+Epoch 390 | train 0.003423 | val 0.001872 | lr 6.4e-09
+Epoch 400 | train 0.003915 | val 0.001852 | lr 6.4e-09
+Epoch 410 | train 0.003237 | val 0.001847 | lr 6.4e-09
+Epoch 420 | train 0.003285 | val 0.001883 | lr 6.4e-09
+Epoch 430 | train 0.003295 | val 0.001859 | lr 6.4e-09
+Epoch 440 | train 0.003712 | val 0.001887 | lr 6.4e-09
+Epoch 450 | train 0.003087 | val 0.001847 | lr 6.4e-09
+Epoch 460 | train 0.003623 | val 0.001860 | lr 6.4e-09
+Epoch 470 | train 0.003443 | val 0.001854 | lr 6.4e-09
+Epoch 480 | train 0.003335 | val 0.001848 | lr 6.4e-09
+Epoch 490 | train 0.003303 | val 0.001867 | lr 6.4e-09
+
+Done in 0.7 min. Best val loss: 0.001833
+Saved best checkpoint to: ckpts/sweep_1x1_neigh_256x4.pt
+[256x4] baseline test 0.00219 (val 0.00217) | neigh test 0.00185 (val 0.00183)
+
+========== config 512x4 ==========
+---- baseline 512x4 ----
+Trainable parameters: 1,825,139
+Epoch   0 | train 0.555709 | val 0.470175 | lr 1.0e-04
+Epoch  10 | train 0.015457 | val 0.013229 | lr 1.0e-04
+Epoch  20 | train 0.008729 | val 0.006679 | lr 1.0e-04
+Epoch  30 | train 0.006133 | val 0.004278 | lr 1.0e-04
+Epoch  40 | train 0.005503 | val 0.003441 | lr 1.0e-04
+Epoch  50 | train 0.004273 | val 0.002796 | lr 1.0e-04
+Epoch  60 | train 0.004384 | val 0.002249 | lr 1.0e-04
+Epoch  70 | train 0.003445 | val 0.001809 | lr 2.0e-05
+Epoch  80 | train 0.003533 | val 0.001759 | lr 2.0e-05
+Epoch  90 | train 0.003249 | val 0.001657 | lr 4.0e-06
+Epoch 100 | train 0.003593 | val 0.001642 | lr 4.0e-06
+Epoch 110 | train 0.003092 | val 0.001644 | lr 8.0e-07
+Epoch 120 | train 0.002800 | val 0.001648 | lr 1.6e-07
+Epoch 130 | train 0.002849 | val 0.001632 | lr 3.2e-08
+Epoch 140 | train 0.003061 | val 0.001641 | lr 6.4e-09
+Epoch 150 | train 0.003186 | val 0.001639 | lr 6.4e-09
+Epoch 160 | train 0.002849 | val 0.001654 | lr 6.4e-09
+Epoch 170 | train 0.003360 | val 0.001650 | lr 6.4e-09
+Epoch 180 | train 0.003125 | val 0.001644 | lr 6.4e-09
+Epoch 190 | train 0.003219 | val 0.001649 | lr 6.4e-09
+Epoch 200 | train 0.003511 | val 0.001628 | lr 6.4e-09
+Epoch 210 | train 0.003131 | val 0.001636 | lr 6.4e-09
+Epoch 220 | train 0.003156 | val 0.001639 | lr 6.4e-09
+Epoch 230 | train 0.003435 | val 0.001622 | lr 6.4e-09
+Epoch 240 | train 0.003696 | val 0.001637 | lr 6.4e-09
+Epoch 250 | train 0.002948 | val 0.001627 | lr 6.4e-09
+Epoch 260 | train 0.003414 | val 0.001617 | lr 6.4e-09
+Epoch 270 | train 0.003472 | val 0.001624 | lr 6.4e-09
+Epoch 280 | train 0.003735 | val 0.001639 | lr 6.4e-09
+Epoch 290 | train 0.002777 | val 0.001649 | lr 6.4e-09
+Epoch 300 | train 0.002706 | val 0.001612 | lr 6.4e-09
+Epoch 310 | train 0.003210 | val 0.001626 | lr 6.4e-09
+Epoch 320 | train 0.002865 | val 0.001625 | lr 6.4e-09
+Epoch 330 | train 0.003127 | val 0.001618 | lr 6.4e-09
+Epoch 340 | train 0.002596 | val 0.001634 | lr 6.4e-09
+Epoch 350 | train 0.003369 | val 0.001652 | lr 6.4e-09
+Epoch 360 | train 0.003262 | val 0.001651 | lr 6.4e-09
+Epoch 370 | train 0.003351 | val 0.001639 | lr 6.4e-09
+Epoch 380 | train 0.003456 | val 0.001626 | lr 6.4e-09
+Epoch 390 | train 0.003259 | val 0.001657 | lr 6.4e-09
+Epoch 400 | train 0.002743 | val 0.001652 | lr 6.4e-09
+Epoch 410 | train 0.003011 | val 0.001648 | lr 6.4e-09
+Epoch 420 | train 0.002951 | val 0.001644 | lr 6.4e-09
+Epoch 430 | train 0.002595 | val 0.001639 | lr 6.4e-09
+Epoch 440 | train 0.003042 | val 0.001642 | lr 6.4e-09
+Epoch 450 | train 0.003463 | val 0.001632 | lr 6.4e-09
+Epoch 460 | train 0.003847 | val 0.001632 | lr 6.4e-09
+Epoch 470 | train 0.002641 | val 0.001631 | lr 6.4e-09
+Epoch 480 | train 0.003571 | val 0.001674 | lr 6.4e-09
+Epoch 490 | train 0.003222 | val 0.001630 | lr 6.4e-09
+
+Done in 1.0 min. Best val loss: 0.001612
+Saved best checkpoint to: ckpts/sweep_1x1_baseline_512x4.pt
+---- neighbourhood 512x4 ----
+Trainable parameters: 1,841,523
+Epoch   0 | train 0.542705 | val 0.458655 | lr 1.0e-04
+Epoch  10 | train 0.014724 | val 0.012289 | lr 1.0e-04
+Epoch  20 | train 0.007458 | val 0.005904 | lr 1.0e-04
+Epoch  30 | train 0.005441 | val 0.003830 | lr 1.0e-04
+Epoch  40 | train 0.005305 | val 0.003157 | lr 1.0e-04
+Epoch  50 | train 0.003878 | val 0.002203 | lr 1.0e-04
+Epoch  60 | train 0.003820 | val 0.001905 | lr 1.0e-04
+Epoch  70 | train 0.003760 | val 0.001808 | lr 1.0e-04
+Epoch  80 | train 0.002937 | val 0.001914 | lr 1.0e-04
+Epoch  90 | train 0.003693 | val 0.001567 | lr 1.0e-04
+Epoch 100 | train 0.003073 | val 0.001341 | lr 1.0e-04
+Epoch 110 | train 0.002539 | val 0.001037 | lr 2.0e-05
+Epoch 120 | train 0.002079 | val 0.000953 | lr 2.0e-05
+Epoch 130 | train 0.002657 | val 0.000941 | lr 2.0e-05
+Epoch 140 | train 0.003064 | val 0.001015 | lr 2.0e-05
+Epoch 150 | train 0.002387 | val 0.000905 | lr 4.0e-06
+Epoch 160 | train 0.002009 | val 0.000910 | lr 4.0e-06
+Epoch 170 | train 0.003434 | val 0.000991 | lr 4.0e-06
+Epoch 180 | train 0.002606 | val 0.000875 | lr 8.0e-07
+Epoch 190 | train 0.002259 | val 0.000921 | lr 1.6e-07
+Epoch 200 | train 0.002388 | val 0.000901 | lr 3.2e-08
+Epoch 210 | train 0.002431 | val 0.000902 | lr 3.2e-08
+Epoch 220 | train 0.002270 | val 0.000886 | lr 6.4e-09
+Epoch 230 | train 0.002466 | val 0.000907 | lr 6.4e-09
+Epoch 240 | train 0.002008 | val 0.000872 | lr 6.4e-09
+Epoch 250 | train 0.002682 | val 0.000888 | lr 6.4e-09
+Epoch 260 | train 0.002400 | val 0.000889 | lr 6.4e-09
+Epoch 270 | train 0.002342 | val 0.000874 | lr 6.4e-09
+Epoch 280 | train 0.002448 | val 0.000884 | lr 6.4e-09
+Epoch 290 | train 0.002246 | val 0.000879 | lr 6.4e-09
+Epoch 300 | train 0.002141 | val 0.000913 | lr 6.4e-09
+Epoch 310 | train 0.002642 | val 0.000891 | lr 6.4e-09
+Epoch 320 | train 0.001931 | val 0.000873 | lr 6.4e-09
+Epoch 330 | train 0.002609 | val 0.000895 | lr 6.4e-09
+Epoch 340 | train 0.002513 | val 0.000880 | lr 6.4e-09
+Epoch 350 | train 0.002568 | val 0.000898 | lr 6.4e-09
+Epoch 360 | train 0.003208 | val 0.000870 | lr 6.4e-09
+Epoch 370 | train 0.003100 | val 0.000887 | lr 6.4e-09
+Epoch 380 | train 0.002442 | val 0.000915 | lr 6.4e-09
+Epoch 390 | train 0.002385 | val 0.000888 | lr 6.4e-09
+Epoch 400 | train 0.002451 | val 0.000890 | lr 6.4e-09
+Epoch 410 | train 0.002089 | val 0.000878 | lr 6.4e-09
+Epoch 420 | train 0.002548 | val 0.000875 | lr 6.4e-09
+Epoch 430 | train 0.002301 | val 0.000892 | lr 6.4e-09
+Epoch 440 | train 0.001999 | val 0.000886 | lr 6.4e-09
+Epoch 450 | train 0.002568 | val 0.000898 | lr 6.4e-09
+Epoch 460 | train 0.002641 | val 0.000906 | lr 6.4e-09
+Epoch 470 | train 0.002099 | val 0.000914 | lr 6.4e-09
+Epoch 480 | train 0.002331 | val 0.000868 | lr 6.4e-09
+Epoch 490 | train 0.001949 | val 0.000870 | lr 6.4e-09
+
+Done in 9.9 min. Best val loss: 0.000868
+Saved best checkpoint to: ckpts/sweep_1x1_neigh_512x4.pt
+[512x4] baseline test 0.00166 (val 0.00161) | neigh test 0.00093 (val 0.00087)
+
+========== config 1024x6 ==========
+---- baseline 1024x6 ----
+Trainable parameters: 7,320,435
+Epoch   0 | train 0.416108 | val 0.318270 | lr 1.0e-04
+Epoch  10 | train 0.008135 | val 0.006325 | lr 1.0e-04
+Epoch  20 | train 0.004779 | val 0.002923 | lr 1.0e-04
+Epoch  30 | train 0.003876 | val 0.002441 | lr 1.0e-04
+Epoch  40 | train 0.003779 | val 0.001735 | lr 1.0e-04
+Epoch  50 | train 0.003605 | val 0.001870 | lr 1.0e-04
+Epoch  60 | train 0.003081 | val 0.002216 | lr 1.0e-04
+Epoch  70 | train 0.003653 | val 0.000912 | lr 2.0e-05
+Epoch  80 | train 0.002256 | val 0.000824 | lr 4.0e-06
+Epoch  90 | train 0.002172 | val 0.000817 | lr 4.0e-06
+Epoch 100 | train 0.002856 | val 0.000807 | lr 4.0e-06
+Epoch 110 | train 0.002784 | val 0.000779 | lr 8.0e-07
+Epoch 120 | train 0.002613 | val 0.000791 | lr 1.6e-07
+Epoch 130 | train 0.002208 | val 0.000813 | lr 3.2e-08
+Epoch 140 | train 0.002055 | val 0.000842 | lr 6.4e-09
+Epoch 150 | train 0.002150 | val 0.000788 | lr 6.4e-09
+Epoch 160 | train 0.002280 | val 0.000795 | lr 6.4e-09
+Epoch 170 | train 0.001880 | val 0.000793 | lr 6.4e-09
+Epoch 180 | train 0.002556 | val 0.000819 | lr 6.4e-09
+Epoch 190 | train 0.002138 | val 0.000765 | lr 6.4e-09
+Epoch 200 | train 0.002056 | val 0.000764 | lr 6.4e-09
+Epoch 210 | train 0.002627 | val 0.000816 | lr 6.4e-09
+Epoch 220 | train 0.001874 | val 0.000795 | lr 6.4e-09
+Epoch 230 | train 0.002227 | val 0.000792 | lr 6.4e-09
+Epoch 240 | train 0.002452 | val 0.000826 | lr 6.4e-09
+Epoch 250 | train 0.002197 | val 0.000784 | lr 6.4e-09
+Epoch 260 | train 0.002500 | val 0.000796 | lr 6.4e-09
+Epoch 270 | train 0.001709 | val 0.000802 | lr 6.4e-09
+Epoch 280 | train 0.002451 | val 0.000797 | lr 6.4e-09
+Epoch 290 | train 0.002983 | val 0.000795 | lr 6.4e-09
+Epoch 300 | train 0.002895 | val 0.000852 | lr 6.4e-09
+Epoch 310 | train 0.002315 | val 0.000804 | lr 6.4e-09
+Epoch 320 | train 0.002319 | val 0.000787 | lr 6.4e-09
+Epoch 330 | train 0.002827 | val 0.000796 | lr 6.4e-09
+Epoch 340 | train 0.002006 | val 0.000788 | lr 6.4e-09
+Epoch 350 | train 0.002318 | val 0.000780 | lr 6.4e-09
+Epoch 360 | train 0.001980 | val 0.000770 | lr 6.4e-09
+Epoch 370 | train 0.002358 | val 0.000788 | lr 6.4e-09
+Epoch 380 | train 0.002766 | val 0.000773 | lr 6.4e-09
+Epoch 390 | train 0.002214 | val 0.000805 | lr 6.4e-09
+Epoch 400 | train 0.002124 | val 0.000780 | lr 6.4e-09
+Epoch 410 | train 0.002176 | val 0.000795 | lr 6.4e-09
+Epoch 420 | train 0.001892 | val 0.000778 | lr 6.4e-09
+Epoch 430 | train 0.002283 | val 0.000792 | lr 6.4e-09
+Epoch 440 | train 0.002010 | val 0.000784 | lr 6.4e-09
+Epoch 450 | train 0.002562 | val 0.000792 | lr 6.4e-09
+Epoch 460 | train 0.002682 | val 0.000795 | lr 6.4e-09
+Epoch 470 | train 0.001993 | val 0.000801 | lr 6.4e-09
+Epoch 480 | train 0.002360 | val 0.000768 | lr 6.4e-09
+Epoch 490 | train 0.002420 | val 0.000765 | lr 6.4e-09
+
+Done in 18.2 min. Best val loss: 0.000764
+Saved best checkpoint to: ckpts/sweep_1x1_baseline_1024x6.pt
+---- neighbourhood 1024x6 ----
+Trainable parameters: 7,353,203
+Epoch   0 | train 0.407871 | val 0.328593 | lr 1.0e-04
+Epoch  10 | train 0.007858 | val 0.005836 | lr 1.0e-04
+Epoch  20 | train 0.005476 | val 0.003317 | lr 1.0e-04
+Epoch  30 | train 0.003682 | val 0.002300 | lr 1.0e-04
+Epoch  40 | train 0.003551 | val 0.002067 | lr 1.0e-04
+Epoch  50 | train 0.003188 | val 0.001414 | lr 1.0e-04
+Epoch  60 | train 0.003926 | val 0.001474 | lr 1.0e-04
+Epoch  70 | train 0.003107 | val 0.000868 | lr 2.0e-05
+Epoch  80 | train 0.002352 | val 0.000826 | lr 2.0e-05
+Epoch  90 | train 0.002492 | val 0.000738 | lr 4.0e-06
+Epoch 100 | train 0.001858 | val 0.000711 | lr 8.0e-07
+Epoch 110 | train 0.001791 | val 0.000710 | lr 8.0e-07
+Epoch 120 | train 0.001834 | val 0.000715 | lr 1.6e-07
+Epoch 130 | train 0.002589 | val 0.000698 | lr 3.2e-08
+Epoch 140 | train 0.001915 | val 0.000723 | lr 3.2e-08
+Epoch 150 | train 0.002781 | val 0.000700 | lr 6.4e-09
+Epoch 160 | train 0.001648 | val 0.000717 | lr 6.4e-09
+Epoch 170 | train 0.002144 | val 0.000744 | lr 6.4e-09
+Epoch 180 | train 0.002262 | val 0.000716 | lr 6.4e-09
+Epoch 190 | train 0.002173 | val 0.000716 | lr 6.4e-09
+Epoch 200 | train 0.003195 | val 0.000753 | lr 6.4e-09
+Epoch 210 | train 0.001649 | val 0.000705 | lr 6.4e-09
+Epoch 220 | train 0.002237 | val 0.000754 | lr 6.4e-09
+Epoch 230 | train 0.002010 | val 0.000752 | lr 6.4e-09
+Epoch 240 | train 0.001910 | val 0.000727 | lr 6.4e-09
+Epoch 250 | train 0.002087 | val 0.000714 | lr 6.4e-09
+Epoch 260 | train 0.002160 | val 0.000703 | lr 6.4e-09
+Epoch 270 | train 0.001982 | val 0.000710 | lr 6.4e-09
+Epoch 280 | train 0.002549 | val 0.000702 | lr 6.4e-09
+Epoch 290 | train 0.002482 | val 0.000713 | lr 6.4e-09
+Epoch 300 | train 0.002438 | val 0.000734 | lr 6.4e-09
+Epoch 310 | train 0.001970 | val 0.000724 | lr 6.4e-09
+Epoch 320 | train 0.001855 | val 0.000717 | lr 6.4e-09
+Epoch 330 | train 0.002249 | val 0.000709 | lr 6.4e-09
+Epoch 340 | train 0.001986 | val 0.000714 | lr 6.4e-09
+Epoch 350 | train 0.002148 | val 0.000705 | lr 6.4e-09
+Epoch 360 | train 0.002447 | val 0.000728 | lr 6.4e-09
+Epoch 370 | train 0.001989 | val 0.000741 | lr 6.4e-09
+Epoch 380 | train 0.002515 | val 0.000718 | lr 6.4e-09
+Epoch 390 | train 0.002394 | val 0.000718 | lr 6.4e-09
+Epoch 400 | train 0.001635 | val 0.000709 | lr 6.4e-09
+Epoch 410 | train 0.002990 | val 0.000723 | lr 6.4e-09
+Epoch 420 | train 0.001785 | val 0.000717 | lr 6.4e-09
+Epoch 430 | train 0.002277 | val 0.000699 | lr 6.4e-09
+Epoch 440 | train 0.002807 | val 0.000746 | lr 6.4e-09
+Epoch 450 | train 0.002223 | val 0.000708 | lr 6.4e-09
+Epoch 460 | train 0.001939 | val 0.000732 | lr 6.4e-09
+Epoch 470 | train 0.002508 | val 0.000709 | lr 6.4e-09
+Epoch 480 | train 0.002060 | val 0.000710 | lr 6.4e-09
+Epoch 490 | train 0.002329 | val 0.000701 | lr 6.4e-09
+
+Done in 2.0 min. Best val loss: 0.000698
+Saved best checkpoint to: ckpts/sweep_1x1_neigh_1024x6.pt
+[1024x6] baseline test 0.00083 (val 0.00076) | neigh test 0.00075 (val 0.00070)
+
+========== config 2000x10 ==========
+---- baseline 2000x10 ----
+Trainable parameters: 40,076,003
+Epoch   0 | train 0.284367 | val 0.149919 | lr 1.0e-04
+Epoch  10 | train 0.005823 | val 0.003310 | lr 1.0e-04
+Epoch  20 | train 0.004498 | val 0.002212 | lr 1.0e-04
+Epoch  30 | train 0.004342 | val 0.003735 | lr 1.0e-04
+Epoch  40 | train 0.003883 | val 0.003489 | lr 1.0e-04
+Epoch  50 | train 0.002735 | val 0.001171 | lr 2.0e-05
+Epoch  60 | train 0.002704 | val 0.000971 | lr 2.0e-05
+Epoch  70 | train 0.002671 | val 0.001228 | lr 2.0e-05
+Epoch  80 | train 0.002366 | val 0.000605 | lr 4.0e-06
+Epoch  90 | train 0.002321 | val 0.000607 | lr 4.0e-06
+Epoch 100 | train 0.002330 | val 0.000613 | lr 8.0e-07
+Epoch 110 | train 0.002111 | val 0.000647 | lr 1.6e-07
+Epoch 120 | train 0.001833 | val 0.000529 | lr 3.2e-08
+Epoch 130 | train 0.002486 | val 0.000580 | lr 6.4e-09
+Epoch 140 | train 0.002103 | val 0.000563 | lr 6.4e-09
+Epoch 150 | train 0.001681 | val 0.000618 | lr 6.4e-09
+Epoch 160 | train 0.001698 | val 0.000563 | lr 6.4e-09
+Epoch 170 | train 0.001817 | val 0.000585 | lr 6.4e-09
+Epoch 180 | train 0.002500 | val 0.000551 | lr 6.4e-09
+Epoch 190 | train 0.002124 | val 0.000564 | lr 6.4e-09
+Epoch 200 | train 0.002641 | val 0.000576 | lr 6.4e-09
+Epoch 210 | train 0.002031 | val 0.000623 | lr 6.4e-09
+Epoch 220 | train 0.001704 | val 0.000575 | lr 6.4e-09
+Epoch 230 | train 0.002380 | val 0.000557 | lr 6.4e-09
+Epoch 240 | train 0.001582 | val 0.000579 | lr 6.4e-09
+Epoch 250 | train 0.002109 | val 0.000605 | lr 6.4e-09
+Epoch 260 | train 0.002327 | val 0.000558 | lr 6.4e-09
+Epoch 270 | train 0.001946 | val 0.000589 | lr 6.4e-09
+Epoch 280 | train 0.002557 | val 0.000567 | lr 6.4e-09
+Epoch 290 | train 0.001662 | val 0.000637 | lr 6.4e-09
+Epoch 300 | train 0.001914 | val 0.000581 | lr 6.4e-09
+Epoch 310 | train 0.002173 | val 0.000576 | lr 6.4e-09
+Epoch 320 | train 0.002206 | val 0.000546 | lr 6.4e-09
+Epoch 330 | train 0.001960 | val 0.000562 | lr 6.4e-09
+Epoch 340 | train 0.002649 | val 0.000592 | lr 6.4e-09
+Epoch 350 | train 0.002416 | val 0.000552 | lr 6.4e-09
+Epoch 360 | train 0.002067 | val 0.000583 | lr 6.4e-09
+Epoch 370 | train 0.002944 | val 0.000661 | lr 6.4e-09
+Epoch 380 | train 0.001957 | val 0.000570 | lr 6.4e-09
+Epoch 390 | train 0.002136 | val 0.000556 | lr 6.4e-09
+Epoch 400 | train 0.002248 | val 0.000599 | lr 6.4e-09
+Epoch 410 | train 0.002071 | val 0.000564 | lr 6.4e-09
+Epoch 420 | train 0.001684 | val 0.000586 | lr 6.4e-09
+Epoch 430 | train 0.001969 | val 0.000563 | lr 6.4e-09
+Epoch 440 | train 0.001750 | val 0.000536 | lr 6.4e-09
+Epoch 450 | train 0.001836 | val 0.000608 | lr 6.4e-09
+Epoch 460 | train 0.002391 | val 0.000523 | lr 6.4e-09
+Epoch 470 | train 0.001887 | val 0.000591 | lr 6.4e-09
+Epoch 480 | train 0.001759 | val 0.000601 | lr 6.4e-09
+Epoch 490 | train 0.001857 | val 0.000559 | lr 6.4e-09
+
+Done in 89.1 min. Best val loss: 0.000523
+Saved best checkpoint to: ckpts/sweep_1x1_baseline_2000x10.pt
+---- neighbourhood 2000x10 ----
+Trainable parameters: 40,140,003
+Epoch   0 | train 0.284536 | val 0.145734 | lr 1.0e-04
+Epoch  10 | train 0.005378 | val 0.002598 | lr 1.0e-04
+Epoch  20 | train 0.004443 | val 0.002290 | lr 1.0e-04
+Epoch  30 | train 0.004911 | val 0.002057 | lr 1.0e-04
+Epoch  40 | train 0.003629 | val 0.003577 | lr 1.0e-04
+Epoch  50 | train 0.002383 | val 0.001070 | lr 2.0e-05
+Epoch  60 | train 0.002283 | val 0.000724 | lr 2.0e-05
+Epoch  70 | train 0.002942 | val 0.000822 | lr 4.0e-06
+Epoch  80 | train 0.002329 | val 0.000648 | lr 4.0e-06
+Epoch  90 | train 0.002833 | val 0.000582 | lr 8.0e-07
+Epoch 100 | train 0.002126 | val 0.000638 | lr 8.0e-07
+Epoch 110 | train 0.001934 | val 0.000619 | lr 1.6e-07
+Epoch 120 | train 0.001618 | val 0.000597 | lr 1.6e-07
+Epoch 130 | train 0.002417 | val 0.000582 | lr 1.6e-07
+Epoch 140 | train 0.002316 | val 0.000596 | lr 3.2e-08
+Epoch 150 | train 0.001583 | val 0.000569 | lr 6.4e-09
+Epoch 160 | train 0.001896 | val 0.000628 | lr 6.4e-09
+Epoch 170 | train 0.002191 | val 0.000635 | lr 6.4e-09
+Epoch 180 | train 0.002359 | val 0.000574 | lr 6.4e-09
+Epoch 190 | train 0.002015 | val 0.000573 | lr 6.4e-09
+Epoch 200 | train 0.002209 | val 0.000663 | lr 6.4e-09
+Epoch 210 | train 0.002710 | val 0.000578 | lr 6.4e-09
+Epoch 220 | train 0.002353 | val 0.000651 | lr 6.4e-09
+Epoch 230 | train 0.002009 | val 0.000593 | lr 6.4e-09
+Epoch 240 | train 0.002020 | val 0.000647 | lr 6.4e-09
+Epoch 250 | train 0.001875 | val 0.000570 | lr 6.4e-09
+Epoch 260 | train 0.002936 | val 0.000611 | lr 6.4e-09
+Epoch 270 | train 0.002518 | val 0.000595 | lr 6.4e-09
+Epoch 280 | train 0.002129 | val 0.000599 | lr 6.4e-09
+Epoch 290 | train 0.002181 | val 0.000675 | lr 6.4e-09
+Epoch 300 | train 0.002704 | val 0.000600 | lr 6.4e-09
+Epoch 310 | train 0.001846 | val 0.000589 | lr 6.4e-09
+Epoch 320 | train 0.002500 | val 0.000677 | lr 6.4e-09
+Epoch 330 | train 0.002147 | val 0.000609 | lr 6.4e-09
+Epoch 340 | train 0.002758 | val 0.000707 | lr 6.4e-09
+Epoch 350 | train 0.001946 | val 0.000605 | lr 6.4e-09
+Epoch 360 | train 0.002401 | val 0.000572 | lr 6.4e-09
+Epoch 370 | train 0.002038 | val 0.000623 | lr 6.4e-09
+Epoch 380 | train 0.001510 | val 0.000605 | lr 6.4e-09
+Epoch 390 | train 0.001976 | val 0.000588 | lr 6.4e-09
+Epoch 400 | train 0.001762 | val 0.000598 | lr 6.4e-09
+Epoch 410 | train 0.001642 | val 0.000591 | lr 6.4e-09
+Epoch 420 | train 0.001808 | val 0.000618 | lr 6.4e-09
+Epoch 430 | train 0.002043 | val 0.000573 | lr 6.4e-09
+Epoch 440 | train 0.002146 | val 0.000591 | lr 6.4e-09
+Epoch 450 | train 0.001615 | val 0.000585 | lr 6.4e-09
+Epoch 460 | train 0.001753 | val 0.000608 | lr 6.4e-09
+Epoch 470 | train 0.001962 | val 0.000589 | lr 6.4e-09
+Epoch 480 | train 0.002898 | val 0.000609 | lr 6.4e-09
+Epoch 490 | train 0.001802 | val 0.000562 | lr 6.4e-09
+
+Done in 46.4 min. Best val loss: 0.000562
+Saved best checkpoint to: ckpts/sweep_1x1_neigh_2000x10.pt
+[2000x10] baseline test 0.00057 (val 0.00052) | neigh test 0.00061 (val 0.00056)
+
+================ SWEEP SUMMARY ================
+config     base params   base val  base test  neigh val  neigh test
+128x3          296,563    0.00240    0.00241    0.00243     0.00237
+256x4          718,963    0.00217    0.00219    0.00183     0.00185
+512x4        1,825,139    0.00161    0.00166    0.00087     0.00093
+1024x6       7,320,435    0.00076    0.00083    0.00070     0.00075
+2000x10     40,076,003    0.00052    0.00057    0.00056     0.00061
+saved logs/sweep_1x1_results.csv
+saved plots/sweep_1x1.png
+saved plots/sweep_1x1_losscurves.png
+================ FULL SWEEP DONE Thu Jun 25 08:16:04 CDT 2026 ================

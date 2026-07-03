@@ -1,0 +1,122 @@
+===== KERNEL CHECK START Thu Jun 25 04:29:36 CDT 2026 =====
+Kernel check on power-tx 2x2 | device mps | HIDDEN=128 N_HIDDEN=3 | kernels [3, 5]
+
+========== K=3  (9 cells in window, input 36 dims) ==========
+Trainable parameters: 300,659
+Epoch   0 | train 0.670825 | val 0.613283 | lr 1.0e-04
+Epoch  10 | train 0.258048 | val 0.255182 | lr 1.0e-04
+Epoch  20 | train 0.110700 | val 0.116234 | lr 1.0e-04
+Epoch  30 | train 0.069559 | val 0.075392 | lr 1.0e-04
+Epoch  40 | train 0.058742 | val 0.064366 | lr 1.0e-04
+Epoch  50 | train 0.054869 | val 0.060372 | lr 1.0e-04
+Epoch  60 | train 0.052345 | val 0.058052 | lr 1.0e-04
+Epoch  70 | train 0.050317 | val 0.056079 | lr 1.0e-04
+Epoch  80 | train 0.049212 | val 0.054272 | lr 1.0e-04
+Epoch  90 | train 0.046838 | val 0.052641 | lr 1.0e-04
+Epoch 100 | train 0.045326 | val 0.051147 | lr 1.0e-04
+Epoch 110 | train 0.044008 | val 0.049763 | lr 1.0e-04
+Epoch 120 | train 0.042453 | val 0.048500 | lr 1.0e-04
+Epoch 130 | train 0.041310 | val 0.047292 | lr 1.0e-04
+Epoch 140 | train 0.039931 | val 0.046273 | lr 1.0e-04
+Epoch 150 | train 0.038902 | val 0.045275 | lr 1.0e-04
+Epoch 160 | train 0.037827 | val 0.044424 | lr 1.0e-04
+Epoch 170 | train 0.036921 | val 0.043674 | lr 1.0e-04
+Epoch 180 | train 0.035616 | val 0.042931 | lr 1.0e-04
+Epoch 190 | train 0.034722 | val 0.042212 | lr 1.0e-04
+Epoch 200 | train 0.033548 | val 0.041575 | lr 1.0e-04
+Epoch 210 | train 0.032408 | val 0.040978 | lr 1.0e-04
+Epoch 220 | train 0.031735 | val 0.040353 | lr 1.0e-04
+Epoch 230 | train 0.030287 | val 0.039838 | lr 1.0e-04
+Epoch 240 | train 0.029257 | val 0.039291 | lr 1.0e-04
+Epoch 250 | train 0.027946 | val 0.038795 | lr 1.0e-04
+Epoch 260 | train 0.027379 | val 0.038330 | lr 1.0e-04
+Epoch 270 | train 0.026042 | val 0.038052 | lr 1.0e-04
+Epoch 280 | train 0.024812 | val 0.037685 | lr 1.0e-04
+Epoch 290 | train 0.024344 | val 0.037414 | lr 1.0e-04
+Epoch 300 | train 0.023223 | val 0.037230 | lr 1.0e-04
+Epoch 310 | train 0.022605 | val 0.036858 | lr 1.0e-04
+Epoch 320 | train 0.021740 | val 0.036826 | lr 1.0e-04
+Epoch 330 | train 0.020777 | val 0.036518 | lr 1.0e-04
+Epoch 340 | train 0.019951 | val 0.036353 | lr 1.0e-04
+Epoch 350 | train 0.019122 | val 0.036306 | lr 1.0e-04
+Epoch 360 | train 0.018646 | val 0.036392 | lr 1.0e-04
+Epoch 370 | train 0.017905 | val 0.036229 | lr 1.0e-04
+Epoch 380 | train 0.017338 | val 0.036408 | lr 1.0e-04
+Epoch 390 | train 0.017006 | val 0.036437 | lr 1.0e-04
+Epoch 400 | train 0.016377 | val 0.036422 | lr 1.0e-04
+Epoch 410 | train 0.015805 | val 0.036672 | lr 1.0e-04
+Epoch 420 | train 0.015204 | val 0.036648 | lr 1.0e-04
+Epoch 430 | train 0.015307 | val 0.036665 | lr 1.0e-04
+Epoch 440 | train 0.015081 | val 0.037034 | lr 1.0e-04
+Epoch 450 | train 0.014130 | val 0.037115 | lr 1.0e-04
+Epoch 460 | train 0.013950 | val 0.037108 | lr 1.0e-04
+Epoch 470 | train 0.013899 | val 0.037213 | lr 1.0e-04
+Epoch 480 | train 0.013361 | val 0.037334 | lr 1.0e-04
+Epoch 490 | train 0.012685 | val 0.037468 | lr 1.0e-04
+
+Done in 0.3 min. Best val loss: 0.036229
+Saved best checkpoint to: ckpts/kcheck_2x2_K3.pt
+[K=3] params 300,659 | best val 0.03623 | test 0.03392
+
+========== K=5  (25 cells in window, input 100 dims) ==========
+Trainable parameters: 308,851
+Epoch   0 | train 0.696669 | val 0.618856 | lr 1.0e-04
+Epoch  10 | train 0.273565 | val 0.273065 | lr 1.0e-04
+Epoch  20 | train 0.117018 | val 0.124477 | lr 1.0e-04
+Epoch  30 | train 0.071105 | val 0.078168 | lr 1.0e-04
+Epoch  40 | train 0.058889 | val 0.065001 | lr 1.0e-04
+Epoch  50 | train 0.055011 | val 0.060607 | lr 1.0e-04
+Epoch  60 | train 0.052607 | val 0.058176 | lr 1.0e-04
+Epoch  70 | train 0.050796 | val 0.056160 | lr 1.0e-04
+Epoch  80 | train 0.048396 | val 0.054449 | lr 1.0e-04
+Epoch  90 | train 0.046720 | val 0.052755 | lr 1.0e-04
+Epoch 100 | train 0.045375 | val 0.051204 | lr 1.0e-04
+Epoch 110 | train 0.043651 | val 0.049819 | lr 1.0e-04
+Epoch 120 | train 0.042427 | val 0.048642 | lr 1.0e-04
+Epoch 130 | train 0.040810 | val 0.047547 | lr 1.0e-04
+Epoch 140 | train 0.039683 | val 0.046473 | lr 1.0e-04
+Epoch 150 | train 0.038740 | val 0.045609 | lr 1.0e-04
+Epoch 160 | train 0.037783 | val 0.044800 | lr 1.0e-04
+Epoch 170 | train 0.036386 | val 0.044097 | lr 1.0e-04
+Epoch 180 | train 0.035417 | val 0.043331 | lr 1.0e-04
+Epoch 190 | train 0.034076 | val 0.042686 | lr 1.0e-04
+Epoch 200 | train 0.032974 | val 0.042207 | lr 1.0e-04
+Epoch 210 | train 0.031915 | val 0.041653 | lr 1.0e-04
+Epoch 220 | train 0.031067 | val 0.041162 | lr 1.0e-04
+Epoch 230 | train 0.029864 | val 0.040652 | lr 1.0e-04
+Epoch 240 | train 0.028666 | val 0.040170 | lr 1.0e-04
+Epoch 250 | train 0.027131 | val 0.039771 | lr 1.0e-04
+Epoch 260 | train 0.026572 | val 0.039387 | lr 1.0e-04
+Epoch 270 | train 0.024980 | val 0.039120 | lr 1.0e-04
+Epoch 280 | train 0.024217 | val 0.038594 | lr 1.0e-04
+Epoch 290 | train 0.023206 | val 0.038402 | lr 1.0e-04
+Epoch 300 | train 0.022130 | val 0.038215 | lr 1.0e-04
+Epoch 310 | train 0.021467 | val 0.037877 | lr 1.0e-04
+Epoch 320 | train 0.020364 | val 0.037799 | lr 1.0e-04
+Epoch 330 | train 0.020321 | val 0.037750 | lr 1.0e-04
+Epoch 340 | train 0.019511 | val 0.037678 | lr 1.0e-04
+Epoch 350 | train 0.018976 | val 0.037584 | lr 1.0e-04
+Epoch 360 | train 0.017712 | val 0.037564 | lr 1.0e-04
+Epoch 370 | train 0.017261 | val 0.037443 | lr 1.0e-04
+Epoch 380 | train 0.016814 | val 0.037391 | lr 1.0e-04
+Epoch 390 | train 0.015977 | val 0.037413 | lr 1.0e-04
+Epoch 400 | train 0.016036 | val 0.037148 | lr 1.0e-04
+Epoch 410 | train 0.015079 | val 0.037318 | lr 1.0e-04
+Epoch 420 | train 0.014875 | val 0.037310 | lr 1.0e-04
+Epoch 430 | train 0.014785 | val 0.037442 | lr 1.0e-04
+Epoch 440 | train 0.013797 | val 0.037236 | lr 1.0e-04
+Epoch 450 | train 0.014161 | val 0.037166 | lr 1.0e-04
+Epoch 460 | train 0.013556 | val 0.037314 | lr 1.0e-04
+Epoch 470 | train 0.012930 | val 0.037209 | lr 1.0e-04
+Epoch 480 | train 0.012618 | val 0.037250 | lr 1.0e-04
+Epoch 490 | train 0.012477 | val 0.037376 | lr 1.0e-04
+
+Done in 0.4 min. Best val loss: 0.037148
+Saved best checkpoint to: ckpts/kcheck_2x2_K5.pt
+[K=5] params 308,851 | best val 0.03715 | test 0.03364
+
+================ KERNEL CHECK SUMMARY ================
+  K   window   in_dim      params        val       test
+  3        9       36     300,659    0.03623    0.03392
+  5       25      100     308,851    0.03715    0.03364
+===== KERNEL CHECK DONE Thu Jun 25 04:30:42 CDT 2026 =====

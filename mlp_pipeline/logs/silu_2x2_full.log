@@ -1,0 +1,31 @@
+================ SILU+BETA2 RUN START Fri Jun 26 04:15:17 CDT 2026 ================
+SiLU/Sigmoid + beta2 on power-tx 2x2 | device mps | d_in=16 d_out=2001 512x4
+Trainable parameters: 1,823,185
+Epoch   0 | train(beta2) 0.182866 | val(MSE) 0.134675 | lr 1.00e-03
+Epoch  10 | train(beta2) 0.083950 | val(MSE) 0.059055 | lr 9.97e-04
+Epoch  20 | train(beta2) 0.073852 | val(MSE) 0.053117 | lr 9.88e-04
+Epoch  30 | train(beta2) 0.070865 | val(MSE) 0.051050 | lr 9.74e-04
+Epoch  40 | train(beta2) 0.064143 | val(MSE) 0.049220 | lr 9.55e-04
+Epoch  50 | train(beta2) 0.056484 | val(MSE) 0.042341 | lr 9.30e-04
+Epoch  60 | train(beta2) 0.052331 | val(MSE) 0.040415 | lr 9.01e-04
+Epoch  70 | train(beta2) 0.047608 | val(MSE) 0.037115 | lr 8.68e-04
+Epoch  80 | train(beta2) 0.044434 | val(MSE) 0.036140 | lr 8.31e-04
+Epoch  90 | train(beta2) 0.041585 | val(MSE) 0.035361 | lr 7.90e-04
+Epoch 100 | train(beta2) 0.038960 | val(MSE) 0.035783 | lr 7.45e-04
+Epoch 110 | train(beta2) 0.036356 | val(MSE) 0.034941 | lr 6.99e-04
+Epoch 120 | train(beta2) 0.033856 | val(MSE) 0.035444 | lr 6.50e-04
+Early stop at epoch 124 (no val improvement for 25 epochs).
+
+Best plain val MSE: 0.034333 @ epoch 99 | test MSE: 0.033898
+  run           : 2026-06-26T04:15:46
+  variant       : pure_MLP_512x4_silu_sigmoid  (+ beta2 dip-weighted loss)
+  dataset       : power-transmission 2x2  (/Users/mkfqm/malof_lab/power_tx_data/dataset_2x2.npz)
+  d_in=16  d_out=2001  hidden=512  n_layers=4
+  act=silu  out_act=sigmoid  loss=beta2
+  optim         : Adam lr=0.001 weight_decay=1e-05 sched=CosineAnnealingLR(T_max=300)
+  batch=128  epochs=300  patience=25  select='best plain val MSE'
+  samples       : train=480  val=120  test=106  (test_split=0.15)
+  device        : mps
+  RESULT        : best plain val MSE=0.034333 @epoch 99 (stopped @ 124) | test MSE=0.033898
+  checkpoint    : ckpts/silu_2x2_512x4.pt
+================ RUN DONE Fri Jun 26 04:15:47 CDT 2026 ================

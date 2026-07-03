@@ -1,0 +1,48 @@
+================ SILU+BETA2 INTEGRATED RUN START Mon Jun 29 22:06:45 CDT 2026 ================
+SiLU/Sigmoid + beta2 on power-tx 2x2 | device cpu | d_in=16 d_out=2001 512x4
+Trainable parameters: 1,823,185
+Epoch   0 | train(beta2) 0.089358 | val(MSE) 0.050823 | lr 1.00e-03
+Epoch  10 | train(beta2) 0.028425 | val(MSE) 0.019452 | lr 9.97e-04
+Epoch  20 | train(beta2) 0.018437 | val(MSE) 0.012477 | lr 9.88e-04
+Epoch  30 | train(beta2) 0.015543 | val(MSE) 0.010630 | lr 9.74e-04
+Epoch  40 | train(beta2) 0.014357 | val(MSE) 0.009774 | lr 9.55e-04
+Epoch  50 | train(beta2) 0.013671 | val(MSE) 0.009308 | lr 9.30e-04
+Epoch  60 | train(beta2) 0.013247 | val(MSE) 0.009020 | lr 9.01e-04
+Epoch  70 | train(beta2) 0.012901 | val(MSE) 0.008954 | lr 8.68e-04
+Epoch  80 | train(beta2) 0.012518 | val(MSE) 0.008502 | lr 8.31e-04
+Epoch  90 | train(beta2) 0.012292 | val(MSE) 0.008705 | lr 7.90e-04
+Epoch 100 | train(beta2) 0.012088 | val(MSE) 0.008619 | lr 7.45e-04
+Epoch 110 | train(beta2) 0.011929 | val(MSE) 0.008202 | lr 6.99e-04
+Epoch 120 | train(beta2) 0.011689 | val(MSE) 0.008283 | lr 6.50e-04
+Epoch 130 | train(beta2) 0.011607 | val(MSE) 0.007991 | lr 5.99e-04
+Epoch 140 | train(beta2) 0.011370 | val(MSE) 0.007986 | lr 5.47e-04
+Epoch 150 | train(beta2) 0.011183 | val(MSE) 0.008042 | lr 4.95e-04
+Epoch 160 | train(beta2) 0.011026 | val(MSE) 0.007734 | lr 4.43e-04
+Epoch 170 | train(beta2) 0.010894 | val(MSE) 0.007720 | lr 3.91e-04
+Epoch 180 | train(beta2) 0.010744 | val(MSE) 0.007564 | lr 3.41e-04
+Epoch 190 | train(beta2) 0.010584 | val(MSE) 0.007420 | lr 2.92e-04
+Epoch 200 | train(beta2) 0.010459 | val(MSE) 0.007385 | lr 2.45e-04
+Epoch 210 | train(beta2) 0.010334 | val(MSE) 0.007297 | lr 2.02e-04
+Epoch 220 | train(beta2) 0.010207 | val(MSE) 0.007253 | lr 1.62e-04
+Epoch 230 | train(beta2) 0.010098 | val(MSE) 0.007190 | lr 1.25e-04
+Epoch 240 | train(beta2) 0.010001 | val(MSE) 0.007168 | lr 9.24e-05
+Epoch 250 | train(beta2) 0.009924 | val(MSE) 0.007145 | lr 6.44e-05
+Epoch 260 | train(beta2) 0.009849 | val(MSE) 0.007119 | lr 4.11e-05
+Epoch 270 | train(beta2) 0.009797 | val(MSE) 0.007104 | lr 2.29e-05
+Epoch 280 | train(beta2) 0.009759 | val(MSE) 0.007073 | lr 9.86e-06
+Epoch 290 | train(beta2) 0.009734 | val(MSE) 0.007061 | lr 2.22e-06
+Epoch 299 | train(beta2) 0.009724 | val(MSE) 0.007066 | lr 0.00e+00
+
+Best plain val MSE: 0.007061 @ epoch 283 | test MSE: 0.007183
+  run           : 2026-06-29T22:13:50
+  variant       : pure_MLP_512x4_silu_sigmoid  (+ beta2 dip-weighted loss)
+  dataset       : power-transmission 2x2  (/Users/mkfqm/malof_lab/power_tx_data/version_2/dataset_2x2_integrated.npz)
+  d_in=16  d_out=2001  hidden=512  n_layers=4
+  act=silu  out_act=sigmoid  loss=beta2
+  optim         : Adam lr=0.001 weight_decay=1e-05 sched=CosineAnnealingLR(T_max=300)
+  batch=128  epochs=300  patience=25  select='best plain val MSE'
+  samples       : train=14704  val=3677  test=3244  (test_split=0.15)
+  device        : cpu
+  RESULT        : best plain val MSE=0.007061 @epoch 283 (stopped @ 299) | test MSE=0.007183
+  checkpoint    : ckpts/silu_2x2_integrated_512x4.pt
+================ RUN DONE Mon Jun 29 22:13:52 CDT 2026 status=0 ================

@@ -1,0 +1,68 @@
+================ SILU+BETA2 NEIGH OLD 706 500EP RUN START Mon Jun 29 23:47:52 CDT 2026 ================
+SiLU/Sigmoid + beta2 neighbourhood on power-tx 2x2 | device cpu | grid 2x2 K=3 ch=4 per-cell d_in=36 d_out=2001 512x4
+Trainable parameters: 1,833,425
+Epoch   0 | train(beta2) 0.182949 | val(MSE) 0.136377 | lr 1.00e-03
+Epoch  10 | train(beta2) 0.083285 | val(MSE) 0.057833 | lr 9.99e-04
+Epoch  20 | train(beta2) 0.074192 | val(MSE) 0.052684 | lr 9.96e-04
+Epoch  30 | train(beta2) 0.070300 | val(MSE) 0.049285 | lr 9.91e-04
+Epoch  40 | train(beta2) 0.065004 | val(MSE) 0.046684 | lr 9.84e-04
+Epoch  50 | train(beta2) 0.057592 | val(MSE) 0.039934 | lr 9.75e-04
+Epoch  60 | train(beta2) 0.050214 | val(MSE) 0.036985 | lr 9.64e-04
+Epoch  70 | train(beta2) 0.044703 | val(MSE) 0.033038 | lr 9.51e-04
+Epoch  80 | train(beta2) 0.039970 | val(MSE) 0.030746 | lr 9.37e-04
+Epoch  90 | train(beta2) 0.036387 | val(MSE) 0.028394 | lr 9.20e-04
+Epoch 100 | train(beta2) 0.033139 | val(MSE) 0.026262 | lr 9.03e-04
+Epoch 110 | train(beta2) 0.030126 | val(MSE) 0.024755 | lr 8.83e-04
+Epoch 120 | train(beta2) 0.028080 | val(MSE) 0.024284 | lr 8.62e-04
+Epoch 130 | train(beta2) 0.026378 | val(MSE) 0.023445 | lr 8.40e-04
+Epoch 140 | train(beta2) 0.024963 | val(MSE) 0.023099 | lr 8.16e-04
+Epoch 150 | train(beta2) 0.023522 | val(MSE) 0.022477 | lr 7.91e-04
+Epoch 160 | train(beta2) 0.022276 | val(MSE) 0.022137 | lr 7.65e-04
+Epoch 170 | train(beta2) 0.020950 | val(MSE) 0.022080 | lr 7.38e-04
+Epoch 180 | train(beta2) 0.020029 | val(MSE) 0.021703 | lr 7.10e-04
+Epoch 190 | train(beta2) 0.019097 | val(MSE) 0.021836 | lr 6.81e-04
+Epoch 200 | train(beta2) 0.018053 | val(MSE) 0.021489 | lr 6.52e-04
+Epoch 210 | train(beta2) 0.017414 | val(MSE) 0.021623 | lr 6.21e-04
+Epoch 220 | train(beta2) 0.016529 | val(MSE) 0.021181 | lr 5.91e-04
+Epoch 230 | train(beta2) 0.015865 | val(MSE) 0.021305 | lr 5.60e-04
+Epoch 240 | train(beta2) 0.015171 | val(MSE) 0.021412 | lr 5.28e-04
+Epoch 250 | train(beta2) 0.014458 | val(MSE) 0.021479 | lr 4.97e-04
+Epoch 260 | train(beta2) 0.013925 | val(MSE) 0.021437 | lr 4.65e-04
+Epoch 270 | train(beta2) 0.013432 | val(MSE) 0.021484 | lr 4.34e-04
+Epoch 280 | train(beta2) 0.012872 | val(MSE) 0.021244 | lr 4.03e-04
+Epoch 290 | train(beta2) 0.012492 | val(MSE) 0.021217 | lr 3.73e-04
+Epoch 300 | train(beta2) 0.012020 | val(MSE) 0.021123 | lr 3.43e-04
+Epoch 310 | train(beta2) 0.011688 | val(MSE) 0.021278 | lr 3.13e-04
+Epoch 320 | train(beta2) 0.011411 | val(MSE) 0.021359 | lr 2.84e-04
+Epoch 330 | train(beta2) 0.011077 | val(MSE) 0.021318 | lr 2.56e-04
+Epoch 340 | train(beta2) 0.010891 | val(MSE) 0.021340 | lr 2.29e-04
+Epoch 350 | train(beta2) 0.010663 | val(MSE) 0.021283 | lr 2.04e-04
+Epoch 360 | train(beta2) 0.010403 | val(MSE) 0.021300 | lr 1.79e-04
+Epoch 370 | train(beta2) 0.010250 | val(MSE) 0.021242 | lr 1.55e-04
+Epoch 380 | train(beta2) 0.010150 | val(MSE) 0.021234 | lr 1.33e-04
+Epoch 390 | train(beta2) 0.009987 | val(MSE) 0.021239 | lr 1.13e-04
+Epoch 400 | train(beta2) 0.009881 | val(MSE) 0.021188 | lr 9.37e-05
+Epoch 410 | train(beta2) 0.009761 | val(MSE) 0.021205 | lr 7.62e-05
+Epoch 420 | train(beta2) 0.009697 | val(MSE) 0.021244 | lr 6.03e-05
+Epoch 430 | train(beta2) 0.009625 | val(MSE) 0.021225 | lr 4.63e-05
+Epoch 440 | train(beta2) 0.009619 | val(MSE) 0.021223 | lr 3.40e-05
+Epoch 450 | train(beta2) 0.009575 | val(MSE) 0.021227 | lr 2.35e-05
+Epoch 460 | train(beta2) 0.009538 | val(MSE) 0.021218 | lr 1.49e-05
+Epoch 470 | train(beta2) 0.009540 | val(MSE) 0.021217 | lr 8.28e-06
+Epoch 480 | train(beta2) 0.009526 | val(MSE) 0.021219 | lr 3.56e-06
+Epoch 490 | train(beta2) 0.009555 | val(MSE) 0.021219 | lr 7.99e-07
+Epoch 499 | train(beta2) 0.009521 | val(MSE) 0.021218 | lr 0.00e+00
+
+Best plain val MSE: 0.021123 @ epoch 300 | test MSE: 0.019482
+  run           : 2026-06-29T23:48:33
+  variant       : neighbourhood_SiLU_512x4_sigmoid  (+ K=3 neighbours + beta2 loss)
+  dataset       : power-transmission 2x2  (/Users/mkfqm/malof_lab/power_tx_data/dataset_2x2.npz)
+  grid_n=2  channels=4  kernel K=3  per-cell d_in=36  d_out=2001
+  hidden=512  n_layers=4  act=silu  out_act=sigmoid  loss=beta2
+  optim         : Adam lr=0.001 weight_decay=1e-05 sched=CosineAnnealingLR(T_max=500)
+  batch=128  epochs=500  patience=500  select='best plain val MSE'
+  samples       : train=480  val=120  test=106  (test_split=0.15)
+  device        : cpu
+  RESULT        : best plain val MSE=0.021123 @epoch 300 (stopped @ 499) | test MSE=0.019482
+  checkpoint    : ckpts/silu_neigh_2x2_K3_512x4_500ep.pt
+================ RUN DONE Mon Jun 29 23:48:34 CDT 2026 status=0 ================

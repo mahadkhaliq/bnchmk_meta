@@ -1,0 +1,8 @@
+run           : 2026-06-30T02:24:57
+dataset       : power-transmission 2x2 (/home/mkfqm/rep_benchmark/power_tx_data/version_2/dataset_2x2_integrated.npz)
+samples       : train=14704  val=3677  test=3244
+architecture  : ReLU MLP, hidden=2000, n_hidden=10, K=3
+optim         : epochs=500 lr=0.0001 weight_decay=0.0001 lr_decay=0.2 lr_patience=10
+device        : cuda
+baseline      : params=40,100,003 best_val=0.008201 test=0.008289
+neighbourhood : params=40,140,003 best_val=0.005776 test=0.005892

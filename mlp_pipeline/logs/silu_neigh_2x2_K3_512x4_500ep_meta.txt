@@ -1,0 +1,11 @@
+run           : 2026-06-29T23:48:33
+variant       : neighbourhood_SiLU_512x4_sigmoid  (+ K=3 neighbours + beta2 loss)
+dataset       : power-transmission 2x2  (/Users/mkfqm/malof_lab/power_tx_data/dataset_2x2.npz)
+grid_n=2  channels=4  kernel K=3  per-cell d_in=36  d_out=2001
+hidden=512  n_layers=4  act=silu  out_act=sigmoid  loss=beta2
+optim         : Adam lr=0.001 weight_decay=1e-05 sched=CosineAnnealingLR(T_max=500)
+batch=128  epochs=500  patience=500  select='best plain val MSE'
+samples       : train=480  val=120  test=106  (test_split=0.15)
+device        : cpu
+RESULT        : best plain val MSE=0.021123 @epoch 300 (stopped @ 499) | test MSE=0.019482
+checkpoint    : ckpts/silu_neigh_2x2_K3_512x4_500ep.pt

@@ -1,0 +1,9 @@
+sweep run     : 2026-06-25T05:10:44
+dataset       : power-transmission 1x1  (/Users/mkfqm/malof_lab/power_tx_data/dataset_1x1.npz)
+grid_n=1  channels=4  kernel K=3
+input_dim=4  output_dim=2001
+samples       : train=2044  val=511  test=451  (test_split=0.15)
+optim         : epochs=500 lr=0.0001 weight_decay=0.0001 batch=128 lr_decay=0.2 lr_patience=10
+device        : mps
+CONFIGS       : [(128, 3), (256, 4), (512, 4), (1024, 6), (2000, 10)]   (HIDDEN x N_HIDDEN)
+variants      : baseline (flat MLP) + neighbourhood (ScaleInvariantMetasurface)
