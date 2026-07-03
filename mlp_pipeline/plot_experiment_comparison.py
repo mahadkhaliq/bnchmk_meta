@@ -4,6 +4,7 @@ Outputs:
     plots/experiment_comparison_2x2.png
     plots/experiment_comparison_2x2_no_sweep.png
     plots/experiment_comparison_2x2_no_sweep_clean.png
+    plots/experiment_comparison_2x2_500ep_no_sweep.png
 
 The figure combines:
     - training-loss curves
@@ -25,11 +26,19 @@ PLOT_DIR = "plots"
 OUT = f"{PLOT_DIR}/experiment_comparison_2x2.png"
 OUT_NO_SWEEP = f"{PLOT_DIR}/experiment_comparison_2x2_no_sweep.png"
 OUT_NO_SWEEP_CLEAN = f"{PLOT_DIR}/experiment_comparison_2x2_no_sweep_clean.png"
+OUT_500_NO_SWEEP = f"{PLOT_DIR}/experiment_comparison_2x2_500ep_no_sweep.png"
 
 LOG_FULL = "logs/powertx_2x2_full.log"
 HIST_OLD_SILU = "logs/history/silu_2x2_512x4.csv"
 HIST_NEW_SILU = "logs/history/silu_2x2_integrated_512x4.csv"
 HIST_NEW_SILU_NEIGH = "logs/history/silu_neigh_2x2_integrated_K3_512x4.csv"
+HIST_OLD_SILU_500 = "logs/history/silu_2x2_512x4_500ep.csv"
+HIST_NEW_SILU_500 = "logs/history/silu_2x2_integrated_512x4_500ep.csv"
+HIST_OLD_SILU_NEIGH_500 = "logs/history/silu_neigh_2x2_K3_512x4_500ep.csv"
+HIST_NEW_SILU_NEIGH_500 = "logs/history/silu_neigh_2x2_integrated_K3_512x4_500ep.csv"
+HIST_FULL_BASE_INT_500 = "logs/history/2x2_integrated_full_relu_cuda_baseline_2000x10.csv"
+HIST_FULL_NEIGH_INT_500 = "logs/history/2x2_integrated_full_relu_cuda_neigh_K3_2000x10.csv"
+RESULTS_FULL_INT_500 = "logs/2x2_integrated_full_relu_cuda_results.csv"
 SWEEP_RESULTS = "logs/sweep_2x2_results.csv"
 HIST_SWEEP_BASE = "logs/history/sweep_2x2_baseline_2000x10.csv"
 HIST_SWEEP_NEIGH = "logs/history/sweep_2x2_neigh_128x3.csv"
@@ -45,6 +54,9 @@ COLORS = {
     "old_silu": "#e76f51",
     "new_silu": "#1f7a5b",
     "new_silu_neigh": "#0f5c8c",
+    "old_silu_neigh": "#b56576",
+    "full_base_int": "#6c7fb5",
+    "full_neigh_int": "#2d6a4f",
 }
 
 
@@ -105,6 +117,18 @@ def read_sweep_tests(path):
     }
 
 
+def read_full_integrated_tests(path):
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    out = {}
+    for r in rows:
+        if r["model"] == "baseline_relu":
+            out["full_base_int"] = float(r["test_mse"])
+        elif r["model"] == "neighbourhood_relu_K3":
+            out["full_neigh_int"] = float(r["test_mse"])
+    return out
+
+
 def plot_comparison(curves, tests, labels, curve_order, bar_order, out, subtitle, annotate=True):
     labels = {
         **labels,
@@ -163,17 +187,17 @@ def plot_comparison(curves, tests, labels, curve_order, bar_order, out, subtitle
     style_ax(ax_bar)
     ax_bar.grid(axis="x", visible=False)
 
-    if annotate and "old_silu" in tests and "new_silu_neigh" in tests:
+    if annotate and "old_silu" in tests and "full_neigh_int" in tests:
         old = tests["old_silu"]
-        new = tests["new_silu_neigh"]
+        new = tests["full_neigh_int"]
         pct = (old - new) / old * 100
         ax_bar.annotate(
-            f"SiLU+K=3 over 21,625 samples\n{pct:.1f}% lower test MSE",
-            xy=(bar_order.index("new_silu_neigh"), new),
+            f"best 21,625-sample model\n{pct:.1f}% lower than 706-sample SiLU",
+            xy=(bar_order.index("full_neigh_int"), new),
             xytext=(0.67, 0.67),
             textcoords="axes fraction",
-            arrowprops=dict(arrowstyle="->", color=COLORS["new_silu_neigh"], lw=1.4),
-            bbox=dict(boxstyle="round,pad=0.45", fc="#edf4f8", ec=COLORS["new_silu_neigh"], lw=1.0),
+            arrowprops=dict(arrowstyle="->", color=COLORS["full_neigh_int"], lw=1.4),
+            bbox=dict(boxstyle="round,pad=0.45", fc="#eef7f1", ec=COLORS["full_neigh_int"], lw=1.0),
             fontsize=9.2,
             color=INK,
             ha="center",
@@ -246,6 +270,39 @@ def main():
         ["full_base", "full_neigh", "old_silu", "new_silu", "new_silu_neigh"],
         OUT_NO_SWEEP_CLEAN,
         subtitle + " Full baseline/neighborhood ran for 500 epochs; SiLU runs used 300 epochs.",
+        annotate=False,
+    )
+
+    curves_500 = {
+        "old_silu": read_history_csv(HIST_OLD_SILU_500),
+        "old_silu_neigh": read_history_csv(HIST_OLD_SILU_NEIGH_500),
+        "new_silu": read_history_csv(HIST_NEW_SILU_500),
+        "new_silu_neigh": read_history_csv(HIST_NEW_SILU_NEIGH_500),
+        "full_base_int": read_history_csv(HIST_FULL_BASE_INT_500),
+        "full_neigh_int": read_history_csv(HIST_FULL_NEIGH_INT_500),
+    }
+    tests_500 = read_full_integrated_tests(RESULTS_FULL_INT_500)
+    tests_500.update({
+        "old_silu": 0.033493,
+        "old_silu_neigh": 0.019482,
+        "new_silu": 0.006866,
+        "new_silu_neigh": 0.006277,
+    })
+    labels_500 = {
+        "old_silu": "SiLU beta2\n1.82M, 706 samples",
+        "old_silu_neigh": "SiLU beta2 neighborhood K=3\n1.83M, 706 samples",
+        "new_silu": "SiLU beta2\n1.82M, 21,625 samples",
+        "new_silu_neigh": "SiLU beta2 neighborhood K=3\n1.83M, 21,625 samples",
+        "full_base_int": "full baseline ReLU\n40.1M, 21,625 samples",
+        "full_neigh_int": "full neighborhood ReLU K=3\n40.1M, 21,625 samples",
+    }
+    order_500 = ["old_silu", "old_silu_neigh", "new_silu", "new_silu_neigh", "full_base_int", "full_neigh_int"]
+    plot_comparison(
+        curves_500, tests_500, labels_500,
+        order_500,
+        order_500,
+        OUT_500_NO_SWEEP,
+        "All shown runs use 500 epochs. 706-sample split: 480/120/106; 21,625-sample split: 14,704/3,677/3,244.",
         annotate=False,
     )
 

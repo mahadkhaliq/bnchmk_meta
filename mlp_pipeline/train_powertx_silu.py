@@ -5,7 +5,7 @@ Recipe (the dip-weighted beta2 loss is what makes it the best variant):
     loss (train) : beta2  -> dip-weighted MSE, w = 1 + 2*(1-T)^2
     optimiser    : Adam(lr=1e-3, weight_decay=1e-5)
     scheduler    : CosineAnnealingLR(T_max=epochs), stepped per epoch
-    batch / epoch: 128 / 300
+    batch / epoch: 128 / 500
     val + select : PLAIN MSE (not the weighted loss); checkpoint best plain val MSE;
                    early stop after `patience` epochs without improvement.
 
@@ -40,18 +40,18 @@ CFG = {
     "weight_decay": 1e-5,
     "scheduler":    "CosineAnnealingLR",
     "batch_size":   128,
-    "epochs":       300,
-    "patience":     25,               # early-stop on PLAIN val MSE
+    "epochs":       500,
+    "patience":     500,              # run full 500-epoch comparison
     "model_select": "best plain val MSE",
 }
 
-CKPT = f"ckpts/silu_{C.GRID}_512x4.pt"
-HIST = f"logs/history/silu_{C.GRID}_512x4.csv"
-META = f"logs/silu_{C.GRID}_meta.txt"
+CKPT = f"ckpts/silu_{C.GRID}_512x4_500ep.pt"
+HIST = f"logs/history/silu_{C.GRID}_512x4_500ep.csv"
+META = f"logs/silu_{C.GRID}_500ep_meta.txt"
 if "integrated" in os.path.basename(C.NPZ_PATH):
-    CKPT = f"ckpts/silu_{C.GRID}_integrated_512x4.pt"
-    HIST = f"logs/history/silu_{C.GRID}_integrated_512x4.csv"
-    META = f"logs/silu_{C.GRID}_integrated_meta.txt"
+    CKPT = f"ckpts/silu_{C.GRID}_integrated_512x4_500ep.pt"
+    HIST = f"logs/history/silu_{C.GRID}_integrated_512x4_500ep.csv"
+    META = f"logs/silu_{C.GRID}_integrated_500ep_meta.txt"
 os.makedirs("ckpts", exist_ok=True)
 os.makedirs("logs/history", exist_ok=True)
 
