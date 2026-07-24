@@ -26,6 +26,7 @@ from losses import beta2_loss, plain_mse
 HIDDEN, N_HIDDEN, LATENT = 512, 4, 64
 EPOCHS = int(os.environ.get("POWERTX_EPOCHS", "500"))
 LR, WD, BATCH = 1e-3, 1e-5, 128
+GRAD_CLIP = 1.0
 
 
 @torch.no_grad()
@@ -101,6 +102,7 @@ def main():
             opt.zero_grad()
             loss = loss_fn(model(x), y)
             loss.backward()
+            torch.nn.utils.clip_grad_norm_(model.parameters(), GRAD_CLIP)  # VF poles are stiff
             opt.step()
             tot += loss.item() * len(x); n += len(x)
         train_loss = tot / n
