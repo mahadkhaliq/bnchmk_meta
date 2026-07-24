@@ -5,6 +5,12 @@ This is the "relaxed Lorentz" version: it keeps the physics-inspired structure
     base cell response + summed neighbour perturbations -> per-cell decoder
 
 but replaces the fixed Lorentzian function with a trainable neural decoder.
+
+Note (per Dr. Malof): the "Lookup Table" label on the Concept #1 slide is a
+typo. f_theta1 (here `unitary`) is an ordinary neural network, and the
+composition f_theta_r(f_theta1(x)) — here `decoder(unitary(x))`, the N == 1
+path below — is the model pretrained to predict 1x1 spectra (equivalently a
+2x2 whose four cells are identical).
 That makes the model easier to optimize while preserving the important
 size-invariant structure: the same unitary, interaction, and decoder networks
 are reused for every cell, and the final spectrum is averaged over cells.
@@ -13,6 +19,7 @@ import torch
 import torch.nn as nn
 
 from models.mlp import MLP
+from models.rel_encoding import RelEncoding
 
 
 class ConceptOneMetasurface(nn.Module):
@@ -36,30 +43,30 @@ class ConceptOneMetasurface(nn.Module):
         latent_dim=64,
         hidden=256,
         n_hidden=4,
-        use_relative_position=True,
+        rel_encoding="offset",
+        rel_emb_dim=8,
+        use_relative_position=None,   # legacy: False maps to rel_encoding="none"
     ):
         super().__init__()
         if K % 2 != 1:
             raise ValueError("K must be odd so each window has a center cell.")
+        if use_relative_position is False:
+            rel_encoding = "none"
 
         self.K = K
         self.C = C
         self.pad = K // 2
         self.n_freq = n_freq
         self.latent_dim = latent_dim
-        self.use_relative_position = use_relative_position
+        self.rel = RelEncoding(rel_encoding, K, rel_emb_dim)
 
-        pair_in = 2 * C + (2 if use_relative_position else 0)
+        pair_in = 2 * C + self.rel.extra_dim
         self.unitary = MLP([C] + [hidden] * n_hidden + [latent_dim])
         self.interaction = MLP([pair_in] + [hidden] * n_hidden + [latent_dim])
         self.decoder = MLP([latent_dim] + [hidden] * n_hidden + [n_freq])
 
     def _relative_position(self, B, di, dj, device, dtype):
-        if not self.use_relative_position:
-            return None
-        denom = float(max(self.pad, 1))
-        rel = torch.tensor([di / denom, dj / denom], device=device, dtype=dtype)
-        return rel.expand(B, 2)
+        return self.rel(di, dj, B, device, dtype)
 
     def forward(self, grid):
         B, N, _, C = grid.shape

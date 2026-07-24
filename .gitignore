@@ -1,11 +1,10 @@
-mlp_pipeline/.mplconfig/
-.DS_Store
-.claude/
-README.zip
+# datasets (large, live on the lab machine / not in git)
 power_tx_data/
+*.zip
+*.npz
+# model checkpoints (large)
 *.pt
 mlp_pipeline/ckpts/
-mlp_pipeline/logs/
-mlp_pipeline/__pycache__/
-mlp_pipeline/**/__pycache__/
+# python
+__pycache__/
 *.pyc

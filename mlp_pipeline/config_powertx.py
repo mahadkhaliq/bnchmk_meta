@@ -15,18 +15,40 @@ import os
 
 import torch
 
-POWERTX_DIR = "/Users/mkfqm/malof_lab/power_tx_data"
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+POWERTX_DIR = os.environ.get(
+    "POWERTX_DIR", os.path.join(PROJECT_DIR, "power_tx_data")
+)
 
 # ===========================================================================
 # >>> PICK THE SUPER-CELL SIZE HERE <<<
 # ===========================================================================
-GRID = "2x2"   # one of: "1x1", "2x2", "3x3"
+GRID = os.environ.get("POWERTX_GRID", "2x2v3")
 
 _SPECS = {
     "1x1": dict(npz="dataset_1x1.npz", grid_n=1, input_dim=4,  output_dim=2001, batch_size=128),
     "2x2": dict(npz="version_2/dataset_2x2_integrated.npz", grid_n=2, input_dim=16, output_dim=2001, batch_size=128),
     "3x3": dict(npz="dataset_3x3.npz", grid_n=3, input_dim=36, output_dim=2003, batch_size=64),
+    # version-3 "preprocessed" set: geom by-atom [d,l,w,g], target T, common 12-26 GHz grid (2001)
+    "1x1v3": dict(npz="version_3/preprocessed_1x1.npz", grid_n=1, input_dim=4,  output_dim=2001, batch_size=128),
+    "2x2v3": dict(npz="version_3/preprocessed_2x2.npz", grid_n=2, input_dim=16, output_dim=2001, batch_size=128),
+    "3x3v3": dict(npz="version_3/preprocessed_3x3.npz", grid_n=3, input_dim=36, output_dim=2001, batch_size=64),
+    # v4 coupled-Lorentz synthetic (20k/scale, geom by-atom [d,l,w,g], 12-26 GHz)
+    "1x1v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_1x1.npz", grid_n=1, input_dim=4, output_dim=2001, batch_size=128),
+    "2x2v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_2x2.npz", grid_n=2, input_dim=16, output_dim=2001, batch_size=128),
+    "3x3v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_3x3.npz", grid_n=3, input_dim=36, output_dim=2001, batch_size=128),
+    "4x4v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_4x4.npz", grid_n=4, input_dim=64, output_dim=2001, batch_size=128),
+    "5x5v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_5x5.npz", grid_n=5, input_dim=100, output_dim=2001, batch_size=128),
+    "6x6v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_6x6.npz", grid_n=6, input_dim=144, output_dim=2001, batch_size=128),
+    "7x7v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_7x7.npz", grid_n=7, input_dim=196, output_dim=2001, batch_size=128),
+    "8x8v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_8x8.npz", grid_n=8, input_dim=256, output_dim=2001, batch_size=128),
+    "9x9v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_9x9.npz", grid_n=9, input_dim=324, output_dim=2001, batch_size=128),
+    "10x10v4": dict(npz="v4_coupled_lorentz_20k_1to10/synthetic_10x10.npz", grid_n=10, input_dim=400, output_dim=2001, batch_size=128),
 }
+if GRID not in _SPECS:
+    raise ValueError(
+        f"Unknown POWERTX_GRID={GRID!r}; expected one of {sorted(_SPECS)}"
+    )
 _s = _SPECS[GRID]
 
 NPZ_PATH   = os.environ.get("POWERTX_NPZ_PATH", f"{POWERTX_DIR}/{_s['npz']}")
@@ -35,9 +57,10 @@ INPUT_DIM  = _s["input_dim"]
 OUTPUT_DIM = _s["output_dim"]
 BATCH_SIZE = _s["batch_size"]
 
-CHANNELS   = 4      # per-cell params: d, g, l, w
-KERNEL     = 3      # K x K neighbourhood window (used by the neighbourhood model)
+CHANNELS   = 4      # four geometry features per cell (order depends on schema)
+KERNEL     = int(os.environ.get("POWERTX_KERNEL", "3"))  # K x K neighbourhood window
 TEST_SPLIT = 0.15   # fraction of the single .npz held out as the test set
+SEED       = int(os.environ.get("POWERTX_SEED", "0"))
 
 # ---------------------------------------------------------------------------
 # MODEL WIDTH
