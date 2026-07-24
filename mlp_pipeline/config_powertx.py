@@ -61,6 +61,8 @@ CHANNELS   = 4      # four geometry features per cell (order depends on schema)
 KERNEL     = int(os.environ.get("POWERTX_KERNEL", "3"))  # K x K neighbourhood window
 TEST_SPLIT = 0.15   # fraction of the single .npz held out as the test set
 SEED       = int(os.environ.get("POWERTX_SEED", "0"))
+# target: "t" = stored T (default);  "s21" = recomputed clip(|S21|^2,0,1) if S21 present
+TARGET     = os.environ.get("POWERTX_TARGET", "t").lower()
 
 # ---------------------------------------------------------------------------
 # MODEL WIDTH

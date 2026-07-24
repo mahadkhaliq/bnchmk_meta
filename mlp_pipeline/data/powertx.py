@@ -27,14 +27,20 @@ from data.datasets import ArrayDataset
 
 def _load_npz():
     """Return (X, Y, schema) with schema in {'legacy', 'v3'} (auto-detected)."""
+    def _target(d, stored_key):
+        # POWERTX_TARGET=s21 -> recompute clip(|S21|^2,0,1), bypassing preprocessing
+        if C.TARGET == "s21" and "S21" in d:
+            return np.clip(np.abs(d["S21"]) ** 2, 0.0, 1.0).astype("float32")
+        return d[stored_key].astype("float32")
+
     with np.load(C.NPZ_PATH, allow_pickle=True) as d:
         if "geom" in d and "T" in d:                      # v3 (by-atom, [d,l,w,g])
             X = d["geom"].astype("float32")
-            Y = d["T"].astype("float32")
+            Y = _target(d, "T")
             schema = "v3"
         elif "params" in d and "T_clean" in d:
             X = d["params"].astype("float32")
-            Y = d["T_clean"].astype("float32")
+            Y = _target(d, "T_clean")
             schema = "legacy"
         else:
             raise ValueError(
