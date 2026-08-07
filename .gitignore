@@ -8,3 +8,10 @@ mlp_pipeline/ckpts/
 # python
 __pycache__/
 *.pyc
+# macOS / matplotlib caches
+.DS_Store
+mlp_pipeline/.mplconfig/
+# private: exported Codex/Claude chat transcripts and agent state
+migration_state/
+# stale working copy kept for reference only
+mlp_pipeline 2/
