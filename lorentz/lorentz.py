@@ -41,6 +41,8 @@ class LorentzPhysics(nn.Module):
         parameterize=True,
         wp_scale=0.5,
         wp_floor=1e-5,
+        w0_mapping="bounded",
+        w0_margin=0.15,
         gamma_scale=0.1,
         gamma_floor=1e-4,
         epsilon_inf_offset=1.0,
@@ -58,6 +60,10 @@ class LorentzPhysics(nn.Module):
             raise ValueError("At least one oscillator is required.")
         if wp_floor < 0 or gamma_floor < 0:
             raise ValueError("Oscillator floors must be non-negative.")
+        if w0_mapping not in {"bounded", "lower_bounded"}:
+            raise ValueError("w0_mapping must be 'bounded' or 'lower_bounded'.")
+        if w0_margin < 0:
+            raise ValueError("w0_margin must be non-negative.")
         if epsilon_inf_offset < 0 or mu_inf_offset < 0:
             raise ValueError("Background offsets must be non-negative.")
 
@@ -72,6 +78,8 @@ class LorentzPhysics(nn.Module):
         self.parameterize = parameterize
         self.wp_scale = float(wp_scale)
         self.wp_floor = float(wp_floor)
+        self.w0_mapping = w0_mapping
+        self.w0_margin = float(w0_margin)
         self.gamma_scale = float(gamma_scale)
         self.gamma_floor = float(gamma_floor)
         self.epsilon_inf_offset = float(epsilon_inf_offset)
@@ -107,8 +115,8 @@ class LorentzPhysics(nn.Module):
         self.register_buffer("w", omega / omega_ref)
         self.register_buffer("k0d", omega * float(thickness_mm) / C_MM_PER_S)
 
-        w_min = max(0.05, float(self.w.min()) - 0.15)
-        w_max = float(self.w.max()) + 0.15
+        w_min = max(0.05, float(self.w.min()) - self.w0_margin)
+        w_max = float(self.w.max()) + self.w0_margin
         self.register_buffer("w0_min", torch.tensor(w_min, dtype=torch.float32))
         self.register_buffer("w0_max", torch.tensor(w_max, dtype=torch.float32))
 
@@ -119,9 +127,12 @@ class LorentzPhysics(nn.Module):
         else:
             wp = raw_wp
         if self.constrain_w0:
-            w0 = self.w0_min + (self.w0_max - self.w0_min) * torch.sigmoid(
-                raw_w0
-            )
+            if self.w0_mapping == "bounded":
+                w0 = self.w0_min + (self.w0_max - self.w0_min) * torch.sigmoid(
+                    raw_w0
+                )
+            else:
+                w0 = self.w0_min + F.softplus(raw_w0)
         else:
             w0 = raw_w0
         if self.constrain_gamma:

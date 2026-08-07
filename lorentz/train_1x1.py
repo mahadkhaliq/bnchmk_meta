@@ -49,6 +49,12 @@ def parse_args():
     parser.add_argument("--thickness-mm", type=float, default=0.2)
     parser.add_argument("--wp-scale", type=float, default=0.5)
     parser.add_argument("--wp-floor", type=float, default=1e-5)
+    parser.add_argument(
+        "--w0-mapping",
+        choices=("bounded", "lower_bounded"),
+        default="bounded",
+    )
+    parser.add_argument("--w0-margin", type=float, default=0.15)
     parser.add_argument("--gamma-scale", type=float, default=0.1)
     parser.add_argument("--gamma-floor", type=float, default=1e-4)
     parser.add_argument("--epsilon-inf-offset", type=float, default=1.0)
@@ -80,6 +86,12 @@ def parse_args():
     parser.add_argument("--lr", type=float, default=3e-4)
     parser.add_argument("--weight-decay", type=float, default=1e-6)
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument(
+        "--split-seed",
+        type=int,
+        default=None,
+        help="Dataset split seed; defaults to --seed for backward compatibility.",
+    )
     parser.add_argument(
         "--max-samples",
         type=int,
@@ -437,6 +449,8 @@ def main():
         raise ValueError("--wp-scale must be positive.")
     if args.wp_floor < 0:
         raise ValueError("--wp-floor must be non-negative.")
+    if args.w0_margin < 0:
+        raise ValueError("--w0-margin must be non-negative.")
     if args.gamma_scale <= 0:
         raise ValueError("--gamma-scale must be positive.")
     if args.gamma_floor < 0:
@@ -451,9 +465,10 @@ def main():
         args.metrics = args.checkpoint.with_suffix(".metrics.json")
 
     seed_everything(args.seed)
+    split_seed = args.seed if args.split_seed is None else args.split_seed
     device = torch.device(args.device)
     freq, feature_names, splits, normalization = load_data(
-        args.dataset, args.seed, args.max_samples
+        args.dataset, split_seed, args.max_samples
     )
     loaders = {
         name: make_loader(
@@ -471,6 +486,8 @@ def main():
         "parameterize": all(constraint_flags.values()),
         "wp_scale": args.wp_scale,
         "wp_floor": args.wp_floor,
+        "w0_mapping": args.w0_mapping,
+        "w0_margin": args.w0_margin,
         "gamma_scale": args.gamma_scale,
         "gamma_floor": args.gamma_floor,
         "epsilon_inf_offset": args.epsilon_inf_offset,
@@ -515,6 +532,7 @@ def main():
         f"| oscillators e={args.n_e}, m={args.n_m} "
         f"| scales wp={args.wp_scale:g}, gamma={args.gamma_scale:g} "
         f"| floors wp={args.wp_floor:g}, gamma={args.gamma_floor:g} "
+        f"| w0={args.w0_mapping}, margin={args.w0_margin:g} "
         f"| offsets eps={args.epsilon_inf_offset:g}, "
         f"mu={args.mu_inf_offset:g} "
         f"| constraints={constraint_profile} "
@@ -560,6 +578,7 @@ def main():
                         "normalization": normalization,
                         "training_loss": "beta2",
                         "seed": args.seed,
+                        "split_seed": split_seed,
                         "best_val_mse": best_val,
                         "best_epoch": best_epoch,
                         "constraint_profile": constraint_profile,
@@ -617,6 +636,8 @@ def main():
         "status": "completed" if failure is None else "failed",
         "constraint_profile": constraint_profile,
         "constraint_flags": constraint_flags,
+        "seed": args.seed,
+        "split_seed": split_seed,
         "requested_epochs": args.epochs,
         "completed_epochs": len(history),
         "best_val_mse": best_val,
