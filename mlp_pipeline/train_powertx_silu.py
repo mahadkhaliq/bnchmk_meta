@@ -16,6 +16,7 @@ config (d_in=16) corresponds to GRID="2x2".
 """
 import os
 import csv
+import random
 from datetime import datetime
 
 import numpy as np
@@ -45,13 +46,15 @@ CFG = {
     "model_select": "best plain val MSE",
 }
 
-CKPT = f"ckpts/silu_{C.GRID}_512x4_500ep.pt"
-HIST = f"logs/history/silu_{C.GRID}_512x4_500ep.csv"
-META = f"logs/silu_{C.GRID}_500ep_meta.txt"
+RUN_SUFFIX = os.environ.get("POWERTX_RUN_SUFFIX", "").strip()
+TAG = f"silu_{C.GRID}_512x4_500ep"
 if "integrated" in os.path.basename(C.NPZ_PATH):
-    CKPT = f"ckpts/silu_{C.GRID}_integrated_512x4_500ep.pt"
-    HIST = f"logs/history/silu_{C.GRID}_integrated_512x4_500ep.csv"
-    META = f"logs/silu_{C.GRID}_integrated_500ep_meta.txt"
+    TAG = f"silu_{C.GRID}_integrated_512x4_500ep"
+if RUN_SUFFIX:
+    TAG = f"{TAG}_{RUN_SUFFIX}"
+CKPT = f"ckpts/{TAG}.pt"
+HIST = f"logs/history/{TAG}.csv"
+META = f"logs/{TAG}_meta.txt"
 os.makedirs("ckpts", exist_ok=True)
 os.makedirs("logs/history", exist_ok=True)
 
@@ -59,12 +62,12 @@ os.makedirs("logs/history", exist_ok=True)
 @torch.no_grad()
 def eval_plain(model, loader, device):
     model.eval()
-    tot, nb = 0.0, 0
+    tot, n = 0.0, 0
     for x, y in loader:
         x, y = x.to(device), y.to(device)
-        tot += plain_mse(model(x), y).item()
-        nb += 1
-    return tot / nb
+        tot += plain_mse(model(x), y).item() * len(x)
+        n += len(x)
+    return tot / n
 
 
 @torch.no_grad()
@@ -89,6 +92,7 @@ def write_meta(n_train, n_val, n_test, best_val, best_ep, test_mse, stopped_ep):
         f"batch={CFG['batch_size']}  epochs={CFG['epochs']}  patience={CFG['patience']}  "
         f"select='{CFG['model_select']}'",
         f"samples       : train={n_train}  val={n_val}  test={n_test}  (test_split={C.TEST_SPLIT})",
+        f"split         : deterministic random 68/17/15  seed={C.SEED}",
         f"device        : {C.device}",
         f"RESULT        : best plain val MSE={best_val:.6f} @epoch {best_ep} "
         f"(stopped @ {stopped_ep}) | test MSE={test_mse:.6f}",
@@ -102,6 +106,9 @@ def write_meta(n_train, n_val, n_test, best_val, best_ep, test_mse, stopped_ep):
 
 def main():
     dev = C.device
+    random.seed(C.SEED)
+    np.random.seed(C.SEED)
+    torch.manual_seed(C.SEED)
     print(f"SiLU/Sigmoid + beta2 on power-tx {C.GRID} | device {dev} | "
           f"d_in={CFG['d_in']} d_out={CFG['d_out']} 512x4")
 
@@ -118,15 +125,16 @@ def main():
 
     for ep in range(CFG["epochs"]):
         model.train()
-        tot = 0.0
+        tot, n = 0.0, 0
         for x, y in tr:
             x, y = x.to(dev), y.to(dev)
             opt.zero_grad()
             loss = beta2_loss(model(x), y)
             loss.backward()
             opt.step()
-            tot += loss.item()
-        train_loss = tot / len(tr)
+            tot += loss.item() * len(x)
+            n += len(x)
+        train_loss = tot / n
         val_mse = eval_plain(model, va, dev)   # PLAIN MSE for selection / early stop
         sched.step()
 

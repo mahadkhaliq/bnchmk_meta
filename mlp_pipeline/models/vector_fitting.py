@@ -85,9 +85,11 @@ class ConceptOneVF(nn.Module):
             rho = rho.reshape(B, U * m, 1)
             t = t + (q / (s - torch.complex(rho, torch.zeros_like(rho)))).sum(dim=1)
         t = t + torch.complex(d, torch.zeros_like(d)).unsqueeze(-1) + h.unsqueeze(-1) * s
-        # power transmission is physically in [0, 1]; clamp bounds the stiff
-        # pole-residue rational (mirrors the Lorentz head's clamp(max=1.0)).
-        return (t.real ** 2 + t.imag ** 2).clamp(0.0, 1.0)
+        power = t.real.square() + t.imag.square()
+        # Keep physical forward values while preserving a recovery gradient
+        # outside the interval; the training loop clips the resulting norm.
+        bounded = power.clamp(0.0, 1.0)
+        return power + (bounded - power).detach()
 
     def forward(self, grid):
         B, N, _, C = grid.shape

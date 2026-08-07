@@ -17,7 +17,7 @@ import torch
 import config_powertx as C
 from data.powertx import load_grid, get_freq_axis
 from models.vector_fitting import ConceptOneVF
-from losses import beta2_loss, plain_mse
+from models.rel_encoding import MODES as REL_MODES
 
 
 @torch.no_grad()
@@ -36,14 +36,18 @@ def main():
     ap.add_argument("--n_pole", type=int, default=8)
     ap.add_argument("--n_real", type=int, default=0)
     ap.add_argument("--K", type=int, default=None, help="override C.KERNEL for arch")
-    ap.add_argument("--rel", default="offset")
+    ap.add_argument("--rel", default="offset", choices=REL_MODES)
     ap.add_argument("--tag", required=True)
     ap.add_argument("--n_random", type=int, default=12)
+    ap.add_argument("--summary", default="logs/transfer/summary.csv")
+    ap.add_argument("--pred_dir", default="logs/transfer/preds")
     args = ap.parse_args()
     K = args.K if args.K is not None else C.KERNEL
     dev = C.device
-    os.makedirs("logs/transfer", exist_ok=True)
-    os.makedirs("logs/transfer/preds", exist_ok=True)
+    summary_dir = os.path.dirname(args.summary)
+    if summary_dir:
+        os.makedirs(summary_dir, exist_ok=True)
+    os.makedirs(args.pred_dir, exist_ok=True)
 
     _, _, test_grid, test_y = load_grid(batch_size=128)
     model = ConceptOneVF(K=K, C=C.CHANNELS, n_freq=C.OUTPUT_DIM, latent_dim=64,
@@ -53,20 +57,35 @@ def main():
 
     pred = predict(model, test_grid, dev)
     per = ((pred - test_y) ** 2).mean(1)          # per-sample MSE
+    weights = 1.0 + 2.0 * (1.0 - test_y) ** 2
+    per_beta2 = (weights * (pred - test_y) ** 2).mean(1)
     mse = float(per.mean())
-    b2 = float(beta2_loss(torch.tensor(pred), torch.tensor(test_y)))
+    b2 = float(per_beta2.mean())
     print(f"[{args.tag}] GRID={C.GRID} target={C.TARGET} n={len(test_y)} "
           f"| test MSE={mse:.6f} | test beta2={b2:.6f}")
 
-    # save summary row + random-sample predictions (for plotting)
-    with open("logs/transfer/summary.csv", "a", newline="") as f:
-        csv.writer(f).writerow([args.tag, C.GRID, C.TARGET, len(test_y),
-                                f"{mse:.6f}", f"{b2:.6f}", os.path.basename(args.ckpt)])
+    # Save summary row plus reproducible random and best/worst spectra.
+    write_header = not os.path.exists(args.summary) or os.path.getsize(args.summary) == 0
+    with open(args.summary, "a", newline="") as f:
+        writer = csv.writer(f)
+        if write_header:
+            writer.writerow(
+                ["tag", "grid", "target", "n", "test_mse", "test_beta2", "checkpoint"]
+            )
+        writer.writerow([args.tag, C.GRID, C.TARGET, len(test_y),
+                         f"{mse:.6f}", f"{b2:.6f}", os.path.basename(args.ckpt)])
     rng = np.random.default_rng(0)
-    idx = rng.choice(len(test_y), size=min(args.n_random, len(test_y)), replace=False)
-    np.savez(f"logs/transfer/preds/{args.tag}.npz",
-             freq=get_freq_axis(), idx=idx, truth=test_y[idx], pred=pred[idx],
-             per_sample_mse=per)
+    random_idx = rng.choice(
+        len(test_y), size=min(args.n_random, len(test_y)), replace=False
+    )
+    best_idx = int(np.argmin(per))
+    worst_idx = int(np.argmax(per))
+    idx = np.unique(np.concatenate([random_idx, [best_idx, worst_idx]]))
+    np.savez(os.path.join(args.pred_dir, f"{args.tag}.npz"),
+             freq=get_freq_axis(), idx=idx, random_idx=random_idx,
+             best_idx=best_idx, worst_idx=worst_idx,
+             truth=test_y[idx], pred=pred[idx],
+             per_sample_mse=per, per_sample_beta2=per_beta2)
 
 
 if __name__ == "__main__":

@@ -13,6 +13,7 @@ import os
 import csv
 import argparse
 import random
+import re
 from datetime import datetime
 
 import numpy as np
@@ -21,12 +22,14 @@ import torch
 import config_powertx as C
 from data.powertx import load_grid, get_freq_axis
 from models.vector_fitting import ConceptOneVF
+from models.rel_encoding import MODES as REL_MODES
 from losses import beta2_loss, plain_mse
 
 HIDDEN, N_HIDDEN, LATENT = 512, 4, 64
 EPOCHS = int(os.environ.get("POWERTX_EPOCHS", "500"))
-LR, WD, BATCH = 1e-3, 1e-5, 128
-GRAD_CLIP = 1.0
+LR = float(os.environ.get("POWERTX_LR", "1e-3"))
+WD, BATCH = 1e-5, 128
+GRAD_CLIP = float(os.environ.get("POWERTX_GRAD_CLIP", "1.0"))
 
 
 @torch.no_grad()
@@ -57,17 +60,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--n_real", type=int, default=0)
     ap.add_argument("--n_pole", type=int, default=8)
-    ap.add_argument("--rel", default="offset",
-                    choices=["offset", "offset_dist", "embed", "none"])
+    ap.add_argument("--rel", default="offset", choices=REL_MODES)
     ap.add_argument("--loss", default="beta2", choices=["beta2", "mse"])
+    ap.add_argument(
+        "--run_id", default="",
+        help="Optional artifact-name suffix used to isolate a controlled study.",
+    )
     args = ap.parse_args()
+    if args.run_id and not re.fullmatch(r"[A-Za-z0-9._-]+", args.run_id):
+        ap.error("--run_id may contain only letters, digits, '.', '_', and '-'.")
     loss_fn = beta2_loss if args.loss == "beta2" else plain_mse
 
     dev = C.device
     random.seed(C.SEED); np.random.seed(C.SEED); torch.manual_seed(C.SEED)
 
+    run_suffix = f"_{args.run_id}" if args.run_id else ""
     TAG = (f"vf_{C.GRID}_K{C.KERNEL}_np{args.n_pole}_nr{args.n_real}"
-           f"_{args.rel}_{args.loss}_512x4_500ep_seed{C.SEED}")
+           f"_{args.rel}_{args.loss}_512x4_{EPOCHS}ep_seed{C.SEED}{run_suffix}")
     CKPT = f"ckpts/{TAG}.pt"
     HIST = f"logs/history/{TAG}.csv"
     META = f"logs/{TAG}_meta.txt"
@@ -136,7 +145,7 @@ def main():
         f"model      : ConceptOneVF (Concept#1 trunk + VF head, SiLU no-BN)",
         f"dataset    : {C.GRID}  ({C.NPZ_PATH})",
         f"K={C.KERNEL} n_pole={args.n_pole} n_real={args.n_real} rel={args.rel} "
-        f"loss={args.loss}",
+        f"loss={args.loss} run_id={args.run_id or '-'}",
         f"trunk      : hidden={HIDDEN} n_hidden={N_HIDDEN} latent={LATENT}",
         f"optim      : Adam lr={LR} wd={WD} Cosine(T_max={EPOCHS}) batch={BATCH} epochs={EPOCHS}",
         f"samples    : train={len(tr.dataset)} val={len(va.dataset)} test={len(test_y)} seed={C.SEED}",
