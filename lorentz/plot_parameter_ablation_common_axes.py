@@ -35,16 +35,24 @@ import numpy as np
 from matplotlib.lines import Line2D
 
 
-# Okabe-Ito, a published colour-vision-deficiency-safe order. Assigned to
-# conditions in matrix order and never cycled; the repository's existing
-# figures already draw from this family.
+# Okabe-Ito, in an order checked with the data-viz six-check validator on the
+# light chart surface: lightness band, chroma floor, adjacent colour-vision-
+# deficiency separation, and normal-vision separation all pass. Worst adjacent
+# pair is #cc79a7 vs #009e73 at deutan dE 7.6, which sits in the 6-8 band and
+# is therefore only legal alongside secondary encoding -- satisfied here,
+# because every condition is also named by a panel title or an axis tick, so
+# identity never rests on hue alone. Three steps fall below 3:1 contrast
+# against the surface, which the same visible labels discharge.
+#
+# The earlier #27647b/#b05a8c pair taken from the older figures fails: #27647b
+# has chroma 0.072 and reads gray, and #b05a8c vs #009e73 is deutan dE 5.4.
 CONDITION_COLORS = (
-    "#27647b",  # Reference
+    "#0072b2",  # Reference
     "#d55e00",
     "#009e73",
-    "#b05a8c",
-    "#0072b2",
+    "#cc79a7",
     "#e69f00",
+    "#56b4e9",
 )
 SEED_STYLES = ("-", "--", "-.", ":", (0, (3, 1, 1, 1, 1, 1)))
 SEED_MARKERS = ("o", "s", "^", "D", "v")
